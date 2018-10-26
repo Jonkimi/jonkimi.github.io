@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="使用acme给阿里云(aliyun)或namesilo网站申请免费HTTPS证书">
+  <meta name="description" content="使用开源工具 acme 给阿里云(aliyun)或 namesilo 的域名自动申请免费Letsencrypt 证书">
 <meta name="keywords" content="Letsencrypt,免费HTTPS证书,acme">
 <meta property="og:type" content="article">
 <meta property="og:title" content="申请Letsencrypt免费HTTPS证书">
 <meta property="og:url" content="https://blog.jonkimi.com/2018/07/28/Free-HTTPS-with-Letsencrypt/index.html">
 <meta property="og:site_name" content="Space &amp; Time">
-<meta property="og:description" content="使用acme给阿里云(aliyun)或namesilo网站申请免费HTTPS证书">
+<meta property="og:description" content="使用开源工具 acme 给阿里云(aliyun)或 namesilo 的域名自动申请免费Letsencrypt 证书">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-26T05:42:55.908Z">
+<meta property="og:updated_time" content="2018-10-26T06:17:38.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="申请Letsencrypt免费HTTPS证书">
-<meta name="twitter:description" content="使用acme给阿里云(aliyun)或namesilo网站申请免费HTTPS证书">
+<meta name="twitter:description" content="使用开源工具 acme 给阿里云(aliyun)或 namesilo 的域名自动申请免费Letsencrypt 证书">
 
 
 
@@ -364,7 +364,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-26 13:42:55" itemprop="dateModified" datetime="2018-10-26T13:42:55+08:00">2018-10-26</time>
+                <time title="修改时间：2018-10-26 14:17:38" itemprop="dateModified" datetime="2018-10-26T14:17:38+08:00">2018-10-26</time>
               
             
           </span>
@@ -395,7 +395,7 @@
           
 
           
-              <div class="post-description">使用acme给阿里云(aliyun)或namesilo网站申请免费HTTPS证书</div>
+              <div class="post-description">使用开源工具 acme 给阿里云(aliyun)或 namesilo 的域名自动申请免费Letsencrypt 证书</div>
           
 
         </div>
@@ -422,6 +422,11 @@
 <li>
 <p>Namesilo申请Letsencrypt证书</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export PROVIDER=namesilo</span><br><span class="line">export LEXICON_NAMESILO_TOKEN="namesilo-api-token"</span><br><span class="line">acme.sh --issue  -d test.acme.sh  --dns dns_lexicon  --dnssleep 960</span><br><span class="line">./acme.sh --issue --dns dns_lexicon -d example.com -d *.example.com --dnssleep 960</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>自动申请</p>
+<p>添加周期任务</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> crontab -e</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加已下配置</span></span><br><span class="line">21 0 * * * "/root/.acme.sh"/acme.sh  --cron --home "/root/.acme.sh" &gt; /root/.acme.sh/run.log</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h2>
