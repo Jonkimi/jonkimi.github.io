@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Space &amp; Time">
 <meta property="og:description" content="在 CentOS 上基于`micropython`安装`py-kms`搭建KMS服务">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-14T05:45:42.411Z">
+<meta property="og:updated_time" content="2018-12-19T12:16:55.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS搭建KMS服务">
 <meta name="twitter:description" content="在 CentOS 上基于`micropython`安装`py-kms`搭建KMS服务">
@@ -364,7 +364,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-14 13:45:42" itemprop="dateModified" datetime="2018-12-14T13:45:42+08:00">2018-12-14</time>
+                <time title="修改时间：2018-12-19 20:16:55" itemprop="dateModified" datetime="2018-12-19T20:16:55+08:00">2018-12-19</time>
               
             
           </span>
@@ -419,13 +419,13 @@
 <h2 id="mircropython安装"><a class="markdownIt-Anchor" href="#mircropython安装"></a> mircropython安装</h2>
 <p>参考<code>README.md</code>里关于<code>The Unix version</code>的内容</p>
 <ol>
-<li>下载<code>v1.9.3</code>代码</li>
+<li>下载最新<code>tag</code>代码</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/micropython/micropython.git</span><br><span class="line">cd micropython</span><br><span class="line">git tag</span><br><span class="line">git checkout -b tag-1.9.3 v1.9.3</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>安装额外依赖</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libffi-devel</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall "Development tools"</span><br><span class="line">yum install libffi-devel</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>编译</li>
 </ol>
@@ -448,7 +448,11 @@
 <ol start="3">
 <li>测试</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python client.py 0.0.0.0 3688</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python client.py 0.0.0.0 1688</span><br></pre></td></tr></table></figure>
+<h2 id="问题定位"><a class="markdownIt-Anchor" href="#问题定位"></a> 问题定位</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> micropython -m upip install -r requirements-micropython.txt</span></span><br><span class="line">Installing to: /root/.micropython/lib/</span><br><span class="line">Warning: pypi.python.org SSL certificate is not validated</span><br><span class="line">Error installing 'micropython-argparse': Package not found, packages may be partially installed</span><br></pre></td></tr></table></figure>
+<p>解决：更新到v1.9.4</p>
+
       
     </div>
 
@@ -690,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖工具"><span class="nav-number">1.</span> <span class="nav-text"> 依赖工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mircropython安装"><span class="nav-number">2.</span> <span class="nav-text"> mircropython安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#py-kms-安装"><span class="nav-number">3.</span> <span class="nav-text"> py-kms 安装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖工具"><span class="nav-number">1.</span> <span class="nav-text"> 依赖工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mircropython安装"><span class="nav-number">2.</span> <span class="nav-text"> mircropython安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#py-kms-安装"><span class="nav-number">3.</span> <span class="nav-text"> py-kms 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题定位"><span class="nav-number">4.</span> <span class="nav-text"> 问题定位</span></a></li></ol></div>
             
 
           </div>
