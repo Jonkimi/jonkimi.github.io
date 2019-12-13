@@ -53,7 +53,7 @@
 <meta property="og:site_name" content="Space &amp; Time">
 <meta property="og:description" content="提高 SSH 安全性">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-13T06:53:18.323Z">
+<meta property="og:updated_time" content="2019-12-13T14:17:39.194Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://blog.jonkimi.com/2018/12/18/SSH-Security-Configuration/">
@@ -214,7 +214,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-13 14:53:18" itemprop="dateModified" datetime="2019-12-13T14:53:18+08:00">2019-12-13</time>
+                <time title="修改时间：2019-12-13 22:17:39" itemprop="dateModified" datetime="2019-12-13T22:17:39+08:00">2019-12-13</time>
               </span>
 
           
@@ -239,8 +239,8 @@
 <h2 id="使用安全算法"><a class="markdownIt-Anchor" href="#使用安全算法"></a> 使用安全算法</h2>
 <p>添加算法指定</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Ciphers aes128-ctr,aes192-ctr,aes256-ctr</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">HostKeyAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-rsa,ssh-dss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">MACs hmac-sha2-256,hmac-sha2-512</span></pre></td></tr></table></figure>
-<h2 id="使用安全性更好的密钥生成算法"><a class="markdownIt-Anchor" href="#使用安全性更好的密钥生成算法"></a> 使用安全性更好的密钥生成算法<sup class="footnote-ref"><a href="#fn2" id="fnref2:1">[2:1]</a></sup></h2>
-<p>使用<code>ed25519</code>或者<code>RSA 4096</code></p>
+<h2 id="使用安全性更好的密钥生成算法"><a class="markdownIt-Anchor" href="#使用安全性更好的密钥生成算法"></a> 使用安全性更好的密钥生成算法</h2>
+<p>使用<code>ed25519</code>或者<code>RSA 4096</code><sup class="footnote-ref"><a href="#fn2" id="fnref2:1">[2:1]</a></sup></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh-keygen -t key_type -b bits -C "comment"</span></pre></td></tr></table></figure>
 <h2 id="禁止-root-远程登录"><a class="markdownIt-Anchor" href="#禁止-root-远程登录"></a> 禁止 Root 远程登录</h2>
 <p>修改<code>PermitRootLogin</code></p>
@@ -248,6 +248,7 @@
 <h2 id="更换端口"><a class="markdownIt-Anchor" href="#更换端口"></a> 更换端口</h2>
 <p>修改<code>Port</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Port 1122</span></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -321,7 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh-安全"><span class="nav-number">1.</span> <span class="nav-text"> SSH 安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭密码登录"><span class="nav-number">2.</span> <span class="nav-text"> 关闭密码登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用安全算法"><span class="nav-number">3.</span> <span class="nav-text"> 使用安全算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用安全性更好的密钥生成算法"><span class="nav-number">4.</span> <span class="nav-text"> 使用安全性更好的密钥生成算法[2:1]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁止-root-远程登录"><span class="nav-number">5.</span> <span class="nav-text"> 禁止 Root 远程登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换端口"><span class="nav-number">6.</span> <span class="nav-text"> 更换端口</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh-安全"><span class="nav-number">1.</span> <span class="nav-text"> SSH 安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭密码登录"><span class="nav-number">2.</span> <span class="nav-text"> 关闭密码登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用安全算法"><span class="nav-number">3.</span> <span class="nav-text"> 使用安全算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用安全性更好的密钥生成算法"><span class="nav-number">4.</span> <span class="nav-text"> 使用安全性更好的密钥生成算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁止-root-远程登录"><span class="nav-number">5.</span> <span class="nav-text"> 禁止 Root 远程登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换端口"><span class="nav-number">6.</span> <span class="nav-text"> 更换端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
