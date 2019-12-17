@@ -53,7 +53,7 @@
 <meta property="og:site_name" content="Space &amp; Time">
 <meta property="og:description" content="Language-Server-Protocol">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-16T08:17:14.482Z">
+<meta property="og:updated_time" content="2019-12-17T06:02:49.014Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://blog.jonkimi.com/2019/12/11/Language-Server-Protocol/">
@@ -214,10 +214,24 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-16 16:17:14" itemprop="dateModified" datetime="2019-12-16T16:17:14+08:00">2019-12-16</time>
+                <time title="修改时间：2019-12-17 14:02:49" itemprop="dateModified" datetime="2019-12-17T14:02:49+08:00">2019-12-17</time>
               </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/12/11/Language-Server-Protocol/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/11/Language-Server-Protocol/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
             <div class="post-description">Language-Server-Protocol</div>
 
         </div>
@@ -304,6 +318,13 @@ Execute bear this way and get Compilation Database json:</p>
 
           </div>
           
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
         </div>
           
@@ -406,7 +427,7 @@ Execute bear this way and get Compilation Database json:</p>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/muse.js"></script>
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -432,6 +453,38 @@ Execute bear this way and get Compilation Database json:</p>
   
 
   
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://Jonkimi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.jonkimi.com/2019/12/11/Language-Server-Protocol/",
+            identifier: "2019/12/11/Language-Server-Protocol/",
+            title: "Language-Server-Protocol"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Jonkimi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>
