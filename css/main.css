@@ -1167,7 +1167,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #13ff65;
+  background: #7485ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2491,6 +2491,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
+  background-size: cover;
 }
 .content-wrap {
   background: initial;
@@ -2514,7 +2515,7 @@ body {
   border-radius: 0 0 16px 16px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   padding: 40px;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
 }
 div>div article + article.post-block {
   border-radius: 16px;
@@ -2522,14 +2523,14 @@ div>div article + article.post-block {
   margin-top: 12px;
 }
 .sidebar {
-  opacity: 0.85;
+  opacity: 0.9;
   background-color: transparent;
 }
 .header-inner {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
 }
 .pagination {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   border-radius: 16px;
   border-top: initial;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
@@ -2540,7 +2541,7 @@ div>div article + article.post-block {
   opacity: 0.9;
 }
 .comments {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   margin: 60px 0 0 0;
   padding: 16px;
 }
