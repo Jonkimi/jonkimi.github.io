@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.jonkimi.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":true,"display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Vibe Coding with context-driven development(or spec-driven development) using Conductor for Gemini CLI, Setup Conductor for Coding Agent using conduct-install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vibe Coding with context-driven development using Conductor for Gemini CLI">
+<meta property="og:url" content="https://blog.jonkimi.com/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/index.html">
+<meta property="og:site_name" content="Space &amp; Time">
+<meta property="og:description" content="Vibe Coding with context-driven development(or spec-driven development) using Conductor for Gemini CLI, Setup Conductor for Coding Agent using conduct-install">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.jonkimi.com/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/423621769737783_.pic_hd.jpg">
+<meta property="article:published_time" content="2026-02-01T13:13:00.000Z">
+<meta property="article:modified_time" content="2026-02-02T07:25:48.267Z">
+<meta property="article:author" content="Jonkimi">
+<meta property="article:tag" content="CDD">
+<meta property="article:tag" content="Conductor">
+<meta property="article:tag" content="Context Driven">
+<meta property="article:tag" content="Gemini CLI">
+<meta property="article:tag" content="SDD">
+<meta property="article:tag" content="Spec Driven">
+<meta property="article:tag" content="Vibe Coding">
+<meta property="article:tag" content="conductor-install">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.jonkimi.com/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/423621769737783_.pic_hd.jpg">
+
+<link rel="canonical" href="https://blog.jonkimi.com/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Vibe Coding with context-driven development using Conductor for Gemini CLI | Space & Time</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Space & Time</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jonkimi.com/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonkimi">
+      <meta itemprop="description" content="Space & Time">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Space & Time">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vibe Coding with context-driven development using Conductor for Gemini CLI
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-02-01 21:13:00" itemprop="dateCreated datePublished" datetime="2026-02-01T21:13:00+08:00">2026-02-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-02-02 15:25:48" itemprop="dateModified" datetime="2026-02-02T15:25:48+08:00">2026-02-02</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">Vibe Coding with context-driven development(or spec-driven development) using Conductor for Gemini CLI, Setup Conductor for Coding Agent using conduct-install</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Vibe Coding 时代，为了解决 AI 因缺乏对项目整体背景、架构约束和长期目标的理解，输出往往会出现不一致，导致上下文频繁丢失和潜在的架构漂移的问题，规范驱动开发（Spec-Driven Development）与上下文驱动开发（Context-Driven Development）等方法论应运而生，旨在“先写规格说明，再让 AI 按规格生成代码”。本文将会介绍 SDD 与 CDD 方法论，以及方法论在 SpecKit、OpenSpec、Conductor 工具中的应用，最后介绍作者的 Conductor 安装工具 conductor-install。</p>
+<p><img src="/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/423621769737783_.pic_hd.jpg" alt="423621769737783_.pic_hd"></p>
+<h2 id="背景从-vibe-coding-到结构化-ai-编程"><a class="markdownIt-Anchor" href="#背景从-vibe-coding-到结构化-ai-编程"></a> 背景：从 Vibe Coding 到结构化 AI 编程</h2>
+<p>2025 年 2 月，Andrej Karpathy 创造了 “Vibe Coding” 一词，主张&quot;忘记代码的存在&quot;。该概念迅速风靡，但也带来了大量技术债务——行业称之为 “Vibe Coding 宿醉”（Vibe Coding Hangover）。</p>
+<p>作为回应，2025 年下半年两个方法论相继浮出水面：</p>
+<ul>
+<li><strong>Spec Driven Development (SDD)</strong>：以 GitHub Spec-Kit、AWS Kiro、Tessl 为代表</li>
+<li><strong>Context Driven Development (CDD)</strong>：以 Google Conductor 为代表</li>
+</ul>
+<p>两者都试图为 AI 编码引入结构和纪律，但切入角度不同。</p>
+<h3 id="sddspec-driven-development"><a class="markdownIt-Anchor" href="#sddspec-driven-development"></a> SDD（Spec Driven Development）</h3>
+<p>一种 AI 辅助编程<strong>范式</strong>，在编码前先编写结构化的需求规格说明，使规格成为人类和 AI 的共同真相来源。根据规格的生命周期和权威程度，分三个递进层次。</p>
+<blockquote>
+<p>“规格不服务于代码；代码服务于规格”</p>
+</blockquote>
+<p><strong>核心原则</strong>：</p>
+<ol>
+<li><strong>意图先行</strong>：先定义&quot;做什么&quot;和&quot;为什么做&quot;</li>
+<li><strong>规格即真相</strong>：规格是开发的锚点</li>
+<li><strong>行为导向</strong>：spec 描述系统行为、约束、接口契约和成功标准</li>
+<li><strong>AI 执行</strong>：AI 根据 spec 生成、验证和重新生成代码</li>
+<li><strong>可追溯性</strong>：从意图到需求到设计到任务到代码，全链路可追溯</li>
+</ol>
+<h3 id="cddcontext-driven-development"><a class="markdownIt-Anchor" href="#cddcontext-driven-development"></a> CDD（Context Driven Development）</h3>
+<p>一种 AI 辅助编程<strong>框架</strong>，通过系统化管理三层上下文（项目级、任务级、历史级）使 AI 理解完整项目语境，核心主张是<strong>人类保持对代码的理解和控制</strong>。</p>
+<blockquote>
+<p>“AI 分析整个项目，而非单行代码”</p>
+</blockquote>
+<p><strong>核心原则</strong>：</p>
+<ol>
+<li>
+<p><strong>上下文持久化</strong>：将上下文从瞬态聊天转为持久化 Markdown 文件</p>
+</li>
+<li>
+<p><strong>意图先于实现</strong>：编码前先形式化需求规格和执行计划</p>
+</li>
+<li>
+<p><strong>持续反馈循环</strong>：借鉴 DevOps 的持续集成理念</p>
+</li>
+<li>
+<p><strong>人类掌控权</strong>：开发者做架构决策，AI 是顾问而非替代者</p>
+</li>
+<li>
+<p><strong>上下文即代码（CaC）</strong>：代码和文档同时服务于人类和 AI</p>
+</li>
+<li>
+<p><strong>全栈上下文感知</strong>：理解代码库整体而非单个文件</p>
+</li>
+</ol>
+<h3 id="简单类比"><a class="markdownIt-Anchor" href="#简单类比"></a> 简单类比</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vibe Coding</td>
+<td>告诉装修工&quot;随便弄好看点&quot;</td>
+</tr>
+<tr>
+<td>SDD</td>
+<td>先画完整施工图纸，工人严格按图施工</td>
+</tr>
+<tr>
+<td>CDD</td>
+<td>带装修工参观你家，了解你的风格偏好，再开始干活</td>
+</tr>
+</tbody>
+</table>
+<p>CDD 更像是给 Vibe Coding 加上下文约束，而 SDD 是用规范文档来约束。两者都是为了解决 Vibe Coding 的混乱问题，但采用了不同的路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Vibe Coding 的反面</span><br><span class="line">      │</span><br><span class="line">      ▼</span><br><span class="line">&quot;在 AI 编码前先形式化意图&quot;</span><br><span class="line">      │</span><br><span class="line">      │</span><br><span class="line">      ├── SDD 视角：强调规格文档作为真相来源</span><br><span class="line">      │    （规格 = 需求 + 约束 + 验收标准 + 设计决策）</span><br><span class="line">      └── CDD 视角：强调提供给 AI 的上下文质量</span><br><span class="line">           （上下文 = 项目历史 + 架构 + 约定 + 规格 + 计划）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="两个维度"><a class="markdownIt-Anchor" href="#两个维度"></a> 两个维度</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">           强上下文（上下文深度） CDD </span><br><span class="line">                ↑</span><br><span class="line">                |</span><br><span class="line">弱规范 ──────────┼─────────→ 强规范（规范强度）SDD</span><br><span class="line">                |</span><br><span class="line">          		弱上下文</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>CDD</th>
+<th>SDD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关注点</td>
+<td><strong>输入</strong>：AI 了解多少现有项目</td>
+<td><strong>输出</strong>：如何约束 AI 生成</td>
+</tr>
+<tr>
+<td>核心问题</td>
+<td>“AI 理解我的代码库吗？”</td>
+<td>“AI 按照规范生成吗？”</td>
+</tr>
+<tr>
+<td>侧重</td>
+<td>理解你<strong>已有的</strong></td>
+<td>定义你<strong>要建的</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="组合使用"><a class="markdownIt-Anchor" href="#组合使用"></a> 组合使用</h3>
+<p><strong>四种组合可能</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>组合</th>
+<th>描述</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低 CDD + 低 SDD</td>
+<td>Vibe Coding</td>
+<td>混乱</td>
+</tr>
+<tr>
+<td>高 CDD + 低 SDD</td>
+<td>纯上下文辅助</td>
+<td>AI 理解项目但自由发挥</td>
+</tr>
+<tr>
+<td>低 CDD + 高 SDD</td>
+<td>纯规范驱动</td>
+<td>有规范但不理解现有代码</td>
+</tr>
+<tr>
+<td><strong>高 CDD + 高 SDD</strong></td>
+<td>两者结合</td>
+<td>AI 既理解项目，又按规范行事</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Google Conductor</strong> 声称 CDD ，实际是就是加入上下文工程的 SDD，用 Google Conductor 团队的话说：“不是直接跳入实现，而是先将你的意图形式化。CDD 通过将项目上下文从聊天窗口转移到代码库本身来解锁上下文驱动的开发。”</p>
+<h2 id="sdd-的三个层次bockelerfowler-框架"><a class="markdownIt-Anchor" href="#sdd-的三个层次bockelerfowler-框架"></a> SDD 的三个层次（Bockeler/Fowler 框架）</h2>
+<p>Birgitta Bockeler（Thoughtworks 杰出工程师）在 Martin Fowler 网站上提出了 SDD 的三层次框架：</p>
+<h3 id="层次一spec-first规格优先"><a class="markdownIt-Anchor" href="#层次一spec-first规格优先"></a> 层次一：Spec-First（规格优先）</h3>
+<p>在 AI 编码前先编写规格说明，作为本次任务的指导。任务完成后，规格通常被<strong>丢弃</strong>。</p>
+<ul>
+<li>规格是临时性工具</li>
+<li>后续变更需创建新规格</li>
+<li>人类仍然直接维护代码</li>
+<li>代表工具：Kiro、Spec-Kit、Antigravity</li>
+</ul>
+<h3 id="层次二spec-anchored规格锚定"><a class="markdownIt-Anchor" href="#层次二spec-anchored规格锚定"></a> 层次二：Spec-Anchored（规格锚定）</h3>
+<p>规格在功能创建后<strong>持续保留</strong>，在维护和演进阶段持续编辑。人类和 AI 共同修改规格与代码。</p>
+<ul>
+<li>规格成为功能的长期文档</li>
+<li>规格与代码并行维护</li>
+<li>两者都是可编辑工件</li>
+<li>代表工具：Conductor（归档保留模式）、Tessl（声称目标）</li>
+</ul>
+<h3 id="层次三spec-as-source规格即源码"><a class="markdownIt-Anchor" href="#层次三spec-as-source规格即源码"></a> 层次三：Spec-as-Source（规格即源码）</h3>
+<p>规格成为<strong>主要可编辑工件</strong>，人类只维护规格，<strong>永远不直接触碰代码</strong>。</p>
+<ul>
+<li>代码标注 <code>// GENERATED FROM SPEC - DO NOT EDIT</code></li>
+<li>人类与代码的交互只通过规格间接进行</li>
+<li>最激进的 SDD 形态</li>
+<li>代表工具：Tessl（探索中）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>规格寿命</th>
+<th>代码地位</th>
+<th>人类编辑对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spec-First</td>
+<td>临时</td>
+<td>主要工件</td>
+<td>规格 + 代码</td>
+</tr>
+<tr>
+<td>Spec-Anchored</td>
+<td>持久</td>
+<td>并行工件</td>
+<td>规格 + 代码</td>
+</tr>
+<tr>
+<td>Spec-as-Source</td>
+<td>永久</td>
+<td>派生产物</td>
+<td>仅规格</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sdd-工具对比"><a class="markdownIt-Anchor" href="#sdd-工具对比"></a> SDD 工具对比</h2>
+<p>四个工具都实现了 Spec-Driven Development (SDD)，但设计理念和严格程度各有不同：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>发布方</th>
+<th>SDD 层级</th>
+<th>核心理念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kiro</td>
+<td>Amazon</td>
+<td>Spec-First</td>
+<td>EARS 语法 + Steering 守护栏</td>
+</tr>
+<tr>
+<td><strong>Conductor</strong></td>
+<td>Google</td>
+<td>Spec-First</td>
+<td>项目级上下文增强</td>
+</tr>
+<tr>
+<td>Spec Kit</td>
+<td>GitHub</td>
+<td>Spec-First</td>
+<td>Constitution 驱动的严格规范</td>
+</tr>
+<tr>
+<td>OpenSpec</td>
+<td>Fission AI</td>
+<td>Spec-Anchored</td>
+<td>Delta Specs 增量迭代</td>
+</tr>
+</tbody>
+</table>
+<p>完整信息参考 [SDD 工具对比]</p>
+<h3 id="工具定位图谱"><a class="markdownIt-Anchor" href="#工具定位图谱"></a> 工具定位图谱</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  纯 CDD                                                     纯 SDD</span><br><span class="line">    │                                                          │</span><br><span class="line">    ▼                                                          ▼</span><br><span class="line">┌─────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────┐</span><br><span class="line">│ Cursor  │  │Antigravity│  │Conductor  │  │ OpenSpec  │  │ ?     │</span><br><span class="line">│         │  │ Kiro      │  │Spec-Kit   │  │           │  │       │</span><br><span class="line">└─────────┘  └───────────┘  └───────────┘  └───────────┘  └───────┘</span><br><span class="line">     │            │               │              │            │ </span><br><span class="line">─────┴────────────┴───────────────┴──────────────┴────────────┴─────</span><br><span class="line">上下文引擎     Spec-First       Spec-Archived   Spec-Anchored   Spec-as-Source</span><br><span class="line">(无 spec 流程) (用完即弃)         (可归档部分复用)       (归档保留复用)      (代码不可编辑)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>递进关系</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">无 Spec → Spec-First → Spec-Anchored → Spec-as-Source</span><br><span class="line">  │           │              │               │</span><br><span class="line">  │           │              │               └── 规格取代代码</span><br><span class="line">  │           │              └── 规格与代码并存，长期维护</span><br><span class="line">  │           └── 规格指导任务，完成后可丢弃</span><br><span class="line">  └── 纯上下文，无规格流程</span><br></pre></td></tr></table></figure>
+<h2 id="如何使用-conductor"><a class="markdownIt-Anchor" href="#如何使用-conductor"></a> 如何使用 Conductor</h2>
+<h3 id="gemini-cli"><a class="markdownIt-Anchor" href="#gemini-cli"></a> Gemini CLI</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gemini extensions install https://github.com/gemini-cli-extensions/conductor --auto-update</span><br></pre></td></tr></table></figure>
+<h3 id="其他-coding-agent"><a class="markdownIt-Anchor" href="#其他-coding-agent"></a> 其他 Coding Agent</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx conductor-install</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://developers.googleblog.com/conductor-introducing-context-driven-development-for-gemini-cli/">Google Developers Blog - Conductor</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html">Martin Fowler - Understanding Spec-Driven-Development</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.thoughtworks.com/insights/blog/agile-engineering-practices/spec-driven-development-unpacking-2025-new-engineering-practices">Thoughtworks - Spec-driven development</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/github/spec-kit">GitHub Spec-Kit</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/gemini-cli-extensions/conductor">Conductor GitHub 仓库</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/Fission-AI/OpenSpec">OpenSpec GitHub 仓库</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://kiro.dev/docs/specs/">Kiro 官方文档</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/Jonkimi/conductor-install">Conductor Install</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Conductor/" rel="tag"># Conductor</a>
+              <a href="/tags/Gemini-CLI/" rel="tag"># Gemini CLI</a>
+              <a href="/tags/Context-Driven/" rel="tag"># Context Driven</a>
+              <a href="/tags/Spec-Driven/" rel="tag"># Spec Driven</a>
+              <a href="/tags/Vibe-Coding/" rel="tag"># Vibe Coding</a>
+              <a href="/tags/conductor-install/" rel="tag"># conductor-install</a>
+              <a href="/tags/SDD/" rel="tag"># SDD</a>
+              <a href="/tags/CDD/" rel="tag"># CDD</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/17/Cpp-static-check-with-Sonarqube-community/" rel="prev" title="Cpp static check with Sonarqube community">
+      <i class="fa fa-chevron-left"></i> Cpp static check with Sonarqube community
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8E-vibe-coding-%E5%88%B0%E7%BB%93%E6%9E%84%E5%8C%96-ai-%E7%BC%96%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text"> 背景：从 Vibe Coding 到结构化 AI 编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sddspec-driven-development"><span class="nav-number">1.1.</span> <span class="nav-text"> SDD（Spec Driven Development）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cddcontext-driven-development"><span class="nav-number">1.2.</span> <span class="nav-text"> CDD（Context Driven Development）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%B1%BB%E6%AF%94"><span class="nav-number">1.3.</span> <span class="nav-text"> 简单类比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.4.</span> <span class="nav-text"> 两个维度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text"> 组合使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sdd-%E7%9A%84%E4%B8%89%E4%B8%AA%E5%B1%82%E6%AC%A1bockelerfowler-%E6%A1%86%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text"> SDD 的三个层次（Bockeler&#x2F;Fowler 框架）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%B8%80spec-first%E8%A7%84%E6%A0%BC%E4%BC%98%E5%85%88"><span class="nav-number">2.1.</span> <span class="nav-text"> 层次一：Spec-First（规格优先）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%BA%8Cspec-anchored%E8%A7%84%E6%A0%BC%E9%94%9A%E5%AE%9A"><span class="nav-number">2.2.</span> <span class="nav-text"> 层次二：Spec-Anchored（规格锚定）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%B8%89spec-as-source%E8%A7%84%E6%A0%BC%E5%8D%B3%E6%BA%90%E7%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text"> 层次三：Spec-as-Source（规格即源码）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sdd-%E5%B7%A5%E5%85%B7%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text"> SDD 工具对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%9A%E4%BD%8D%E5%9B%BE%E8%B0%B1"><span class="nav-number">3.1.</span> <span class="nav-text"> 工具定位图谱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-conductor"><span class="nav-number">4.</span> <span class="nav-text"> 如何使用 Conductor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gemini-cli"><span class="nav-number">4.1.</span> <span class="nav-text"> Gemini CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96-coding-agent"><span class="nav-number">4.2.</span> <span class="nav-text"> 其他 Coding Agent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonkimi</p>
+  <div class="site-description" itemprop="description">Space & Time</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">89</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonkimi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v8.1.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://Jonkimi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.jonkimi.com/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/",
+            identifier: "2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/",
+            title: "Vibe Coding with context-driven development using Conductor for Gemini CLI"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Jonkimi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
