@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,default">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.jonkimi.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":true,"display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="安装 dnscrypt-proxy 加密 DNS 请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加密 DNS">
+<meta property="og:url" content="https://blog.jonkimi.com/2018/10/01/Encrypt-your-DNS-with-dnscrypt-proxy/index.html">
+<meta property="og:site_name" content="Space &amp; Time">
+<meta property="og:description" content="安装 dnscrypt-proxy 加密 DNS 请求">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-01T07:05:21.000Z">
+<meta property="article:modified_time" content="2020-03-25T11:23:34.211Z">
+<meta property="article:author" content="Jonkimi">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="dnscrypt">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.jonkimi.com/2018/10/01/Encrypt-your-DNS-with-dnscrypt-proxy/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>加密 DNS | Space & Time</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Space & Time</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.jonkimi.com/2018/10/01/Encrypt-your-DNS-with-dnscrypt-proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jonkimi">
+      <meta itemprop="description" content="Space & Time">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Space & Time">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          加密 DNS
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-01 15:05:21" itemprop="dateCreated datePublished" datetime="2018-10-01T15:05:21+08:00">2018-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-25 19:23:34" itemprop="dateModified" datetime="2020-03-25T19:23:34+08:00">2020-03-25</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2018/10/01/Encrypt-your-DNS-with-dnscrypt-proxy/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/01/Encrypt-your-DNS-with-dnscrypt-proxy/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">安装 dnscrypt-proxy 加密 DNS 请求</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>[dnscrypt-proxy][1] 是一款灵活的 、拥有加密协议的 DNS 代理软件，可以实现 DNS 流量的加密与验证。</p>
+<h2 id="在-linux-加密-dns"><a class="markdownIt-Anchor" href="#在-linux-加密-dns"></a> 在 Linux 加密 DNS</h2>
+<p>下载 [Linux 64 位安装包][2]，解压到指定目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/jedisct1/dnscrypt-proxy/releases/download/2.0.16/dnscrypt-proxy-linux_x86_64-2.0.16.tar.gz</span><br><span class="line">tar zxf dnscrypt-proxy-linux_x86_64-2.0.16.tar.gz -C &lt;your-services-dir&gt;</span><br><span class="line">mv linux_x86_64 dnscrypt_proxy</span><br></pre></td></tr></table></figure>
+<p>配置<code>dnscrypt-proxy.toml</code></p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ipv4_servers</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">ipv6_servers</span> = <span class="literal">false</span></span><br><span class="line"><span class="attr">require_dnssec</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">require_nolog</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">require_nofilter</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">cache</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">block_ipv6</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">force_tcp</span> = <span class="literal">false</span></span><br><span class="line"><span class="attr">listen_addresses</span> = [<span class="string">"127.0.0.1:53"</span>, <span class="string">"[::1]:53"</span>]</span><br><span class="line"><span class="attr">max_clients</span> = <span class="number">250</span></span><br><span class="line"><span class="attr">dnscrypt_servers</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">doh_servers</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">daemonize</span> = <span class="literal">false</span></span><br><span class="line"><span class="attr">timeout</span> = <span class="number">2500</span></span><br><span class="line"><span class="attr">keepalive</span> = <span class="number">30</span></span><br><span class="line"><span class="attr">netprobe_timeout</span> = <span class="number">45</span></span><br><span class="line"><span class="attr">log_level</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">use_syslog</span> = <span class="literal">false</span></span><br><span class="line"><span class="attr">cert_refresh_delay</span> = <span class="number">240</span></span><br><span class="line"><span class="attr">fallback_resolver</span> = <span class="string">"114.114.114.114:53"</span></span><br><span class="line"><span class="attr">ignore_system_dns</span> = <span class="literal">false</span></span><br><span class="line"><span class="attr">log_files_max_size</span> = <span class="number">10</span></span><br><span class="line"><span class="attr">log_files_max_age</span> = <span class="number">7</span></span><br><span class="line"><span class="attr">log_files_max_backups</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">cache_size</span> = <span class="number">256</span></span><br><span class="line"><span class="attr">cache_min_ttl</span> = <span class="number">600</span></span><br><span class="line"><span class="attr">cache_max_ttl</span> = <span class="number">86400</span></span><br><span class="line"><span class="attr">cache_neg_ttl</span> = <span class="number">60</span></span><br><span class="line"></span><br><span class="line"><span class="section">[query_log]</span></span><br><span class="line"><span class="attr">format</span> = <span class="string">"ltsv"</span></span><br><span class="line"><span class="attr">file</span> = <span class="string">"query.log"</span></span><br><span class="line"></span><br><span class="line"><span class="section">[nx_log]</span></span><br><span class="line"><span class="attr">format</span> = <span class="string">"ltsv"</span></span><br><span class="line"></span><br><span class="line"><span class="section">[blacklist]</span></span><br><span class="line"><span class="attr">blacklist_file</span> = <span class="string">"blacklist.txt"</span></span><br><span class="line"><span class="attr">log_file</span> = <span class="string">"blocked.log"</span></span><br><span class="line"><span class="attr">log_format</span> = <span class="string">"ltsv"</span></span><br><span class="line"></span><br><span class="line"><span class="section">[ip_blacklist]</span></span><br><span class="line"></span><br><span class="line"><span class="section">[sources]</span></span><br><span class="line"></span><br><span class="line"><span class="section">[sources.public-resolvers]</span></span><br><span class="line"><span class="attr">urls</span> = [<span class="string">"https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v2/public-resolvers.md"</span>, <span class="string">"https://download.dnscrypt.info/resolvers-list/v2/public-resolvers.md"</span>]</span><br><span class="line"><span class="attr">minisign_key</span> = <span class="string">"RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3"</span></span><br><span class="line"><span class="attr">cache_file</span> = <span class="string">"public-resolvers.md"</span></span><br><span class="line"><span class="attr">refresh_delay</span> = <span class="number">72</span></span><br><span class="line"><span class="attr">prefix</span> = <span class="string">""</span></span><br></pre></td></tr></table></figure>
+<p>启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./dnscrypt-proxy -service install</span><br><span class="line">./dnscrypt-proxy -service start</span><br></pre></td></tr></table></figure>
+<p>自定义服务</p>
+<p><code>/etc/systemd/system/dnscrypt-proxy.service</code></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Encrypted/authenticated DNS proxy</span><br><span class="line"><span class="attr">ConditionFileIsExecutable</span>=/opt/dnscrypt-proxy/dnscrypt-proxy</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">StartLimitInterval</span>=<span class="number">5</span></span><br><span class="line"><span class="attr">StartLimitBurst</span>=<span class="number">10</span></span><br><span class="line"><span class="attr">ExecStart</span>=/opt/dnscrypt-proxy/dnscrypt-proxy</span><br><span class="line"></span><br><span class="line"><span class="attr">WorkingDirectory</span>=/opt/dnscrypt-proxy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="attr">RestartSec</span>=<span class="number">120</span></span><br><span class="line"><span class="attr">EnvironmentFile</span>=-/etc/sysconfig/dnscrypt-proxy</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>关闭系统分配 DNS</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable NetworkManager.service</span><br></pre></td></tr></table></figure>
+<p>修改系统 DNS 地址 /etc/resolv.conf</p>
+<p>测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install <span class="built_in">bind</span>-utils</span><br><span class="line">dig @127.0.0.1 www.google.com</span><br></pre></td></tr></table></figure>
+<p>DoH</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/m13253/dns-over-https.git</span><br><span class="line">cd dns-over-https/</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">cat &lt;&lt; EOM &gt; /etc/dns-over-https/doh-server.conf listen = [</span><br><span class="line">    "127.0.0.1:8053",</span><br><span class="line">    "[::1]:8053",</span><br><span class="line">  ]</span><br><span class="line">  cert = ""</span><br><span class="line">  key = ""</span><br><span class="line">  path = "/dns-query"</span><br><span class="line">  upstream = [</span><br><span class="line">      "127.0.0.1:53"</span><br><span class="line">  ]</span><br><span class="line">  timeout = 10</span><br><span class="line">  tries = 3</span><br><span class="line">  tcp_only = false</span><br><span class="line">  verbose = false</span><br><span class="line">  log_guessed_client_ip = false</span><br><span class="line">  EOM</span><br><span class="line"></span><br><span class="line">cat &lt;&lt; EOM &gt; /etc/nginx/conf.d/doh.conf</span><br><span class="line">  upstream dns-backend &#123;</span><br><span class="line">      server 127.0.0.1:8053;</span><br><span class="line">      keepalive 30;</span><br><span class="line">  &#125;</span><br><span class="line">  server &#123;</span><br><span class="line">          listen 80</span><br><span class="line">          server_name dns.bentasker.co.uk;</span><br><span class="line">          root /tmp/NOEXIST;</span><br><span class="line">          location /dns-query &#123;</span><br><span class="line">                  limit_req zone=doh_limit burst=50 nodelay;</span><br><span class="line">                  proxy_set_header X-Real-IP \$remote_addr;</span><br><span class="line">                  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;</span><br><span class="line">                  proxy_set_header Host \$http_host;</span><br><span class="line">                  proxy_set_header X-NginX-Proxy true;</span><br><span class="line">                  proxy_http_version 1.1;</span><br><span class="line">                  proxy_set_header Upgrade \$http_upgrade;</span><br><span class="line">                  proxy_set_header Connection "";</span><br><span class="line">                  proxy_redirect off;</span><br><span class="line">                  proxy_set_header        X-Forwarded-Proto \$scheme;</span><br><span class="line">                  proxy_read_timeout 86400;</span><br><span class="line">                  proxy_pass http://dns-backend/dns-query;</span><br><span class="line">          &#125;</span><br><span class="line">          location / &#123;</span><br><span class="line">              return 404;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  EOM</span><br></pre></td></tr></table></figure>
+<h2 id="在-winwos-上加密-dns"><a class="markdownIt-Anchor" href="#在-winwos-上加密-dns"></a> 在 Winwos 上加密 DNS</h2>
+<p>下载 [Simple DNSCrypt][3] 安装后修改系统 DNS 地址。</p>
+<h2 id="在-ubuntu-上修改-dns"><a class="markdownIt-Anchor" href="#在-ubuntu-上修改-dns"></a> 在 Ubuntu 上修改 DNS</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/resolvconf/resolv.conf.d/base</span><br><span class="line">sudo resolvconf -u</span><br><span class="line">cat /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li><a href="https://github.com/jedisct1/dnscrypt-proxy" target="_blank" rel="noopener">https://github.com/jedisct1/dnscrypt-proxy</a></li>
+<li><a href="https://github.com/jedisct1/dnscrypt-proxy/releases/download/2.0.16/dnscrypt-proxy-linux_x86_64-2.0.16.tar.gz" target="_blank" rel="noopener">https://github.com/jedisct1/dnscrypt-proxy/releases/download/2.0.16/dnscrypt-proxy-linux_x86_64-2.0.16.tar.gz</a></li>
+<li><a href="https://simplednscrypt.org/" target="_blank" rel="noopener">https://simplednscrypt.org/</a></li>
+<li><a href="https://www.bentasker.co.uk/documentation/linux/407-building-and-running-your-own-dns-over-https-server" target="_blank" rel="noopener">https://www.bentasker.co.uk/documentation/linux/407-building-and-running-your-own-dns-over-https-server</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/dnscrypt/" rel="tag"># dnscrypt</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/09/22/Install-Python3-on-CentOS7/" rel="prev" title="CentOS 7 源代码编译安装 Python 3">
+      <i class="fa fa-chevron-left"></i> CentOS 7 源代码编译安装 Python 3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/12/18/SSH-Security-Configuration/" rel="next" title="SSH 安全">
+      SSH 安全 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-linux-%E5%8A%A0%E5%AF%86-dns"><span class="nav-number">1.</span> <span class="nav-text"> 在 Linux 加密 DNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-winwos-%E4%B8%8A%E5%8A%A0%E5%AF%86-dns"><span class="nav-number">2.</span> <span class="nav-text"> 在 Winwos 上加密 DNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-ubuntu-%E4%B8%8A%E4%BF%AE%E6%94%B9-dns"><span class="nav-number">3.</span> <span class="nav-text"> 在 Ubuntu 上修改 DNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jonkimi</p>
+  <div class="site-description" itemprop="description">Space & Time</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonkimi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v8.1.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://Jonkimi.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://blog.jonkimi.com/2018/10/01/Encrypt-your-DNS-with-dnscrypt-proxy/",
+            identifier: "2018/10/01/Encrypt-your-DNS-with-dnscrypt-proxy/",
+            title: "加密 DNS"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Jonkimi.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
