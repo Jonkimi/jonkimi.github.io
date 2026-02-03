@@ -54,7 +54,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.jonkimi.com/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/423621769737783_.pic_hd.jpg">
 <meta property="article:published_time" content="2026-02-01T13:13:00.000Z">
-<meta property="article:modified_time" content="2026-02-02T22:50:10.690Z">
+<meta property="article:modified_time" content="2026-02-03T00:38:53.360Z">
 <meta property="article:author" content="Jonkimi">
 <meta property="article:tag" content="CDD">
 <meta property="article:tag" content="Conductor">
@@ -225,7 +225,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2026-02-03 06:50:10" itemprop="dateModified" datetime="2026-02-03T06:50:10+08:00">2026-02-03</time>
+                <time title="Modified: 2026-02-03 08:38:53" itemprop="dateModified" datetime="2026-02-03T08:38:53+08:00">2026-02-03</time>
               </span>
 
           
@@ -456,13 +456,13 @@
 <td><strong>Conductor</strong></td>
 <td>Google</td>
 <td>Spec-First</td>
-<td>Project-level context enhancement</td>
+<td>Project-level context enhancement, TDD built-in</td>
 </tr>
 <tr>
 <td>Spec Kit</td>
 <td>GitHub</td>
 <td>Spec-First</td>
-<td>Constitution-driven strict specs</td>
+<td>Constitution-driven strict specs, TDD built-in</td>
 </tr>
 <tr>
 <td>OpenSpec</td>
@@ -473,9 +473,69 @@
 </tbody>
 </table>
 <h3 id="tool-positioning-map"><a class="markdownIt-Anchor" href="#tool-positioning-map"></a> Tool Positioning Map</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Tool</th>
+<th style="text-align:left">Project-Level Rules</th>
+<th style="text-align:left">Feature Spec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Spec Kit</td>
+<td style="text-align:left">Anchored (Constitution)</td>
+<td style="text-align:left">First (branch lifecycle)</td>
+</tr>
+<tr>
+<td style="text-align:left">Kiro</td>
+<td style="text-align:left">Anchored (Steering)</td>
+<td style="text-align:left">First (task lifecycle)</td>
+</tr>
+<tr>
+<td style="text-align:left">Conductor</td>
+<td style="text-align:left">Anchored (<a target="_blank" rel="noopener" href="http://product.md">product.md</a>, <a target="_blank" rel="noopener" href="http://tech-stack.md">tech-stack.md</a>)</td>
+<td style="text-align:left">First (track lifecycle)</td>
+</tr>
+<tr>
+<td style="text-align:left">OpenSpec</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">Anchored (system source of truth)</td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  Pure CDD                                                   Pure SDD</span><br><span class="line">    │                                                          │</span><br><span class="line">    ▼                                                          ▼</span><br><span class="line">┌─────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────┐</span><br><span class="line">│ Cursor  │  │Antigravity│  │Conductor  │  │ OpenSpec  │  │ ?     │</span><br><span class="line">│         │  │ Kiro      │  │Spec-Kit   │  │           │  │       │</span><br><span class="line">└─────────┘  └───────────┘  └───────────┘  └───────────┘  └───────┘</span><br><span class="line">     │            │               │              │            │</span><br><span class="line">─────┴────────────┴───────────────┴──────────────┴────────────┴─────</span><br><span class="line">Context Engine  Spec-First      Spec-Archived   Spec-Anchored  Spec-as-Source</span><br><span class="line">(No spec flow)  (Use &amp; discard)  (Partial reuse)  (Archive &amp; reuse) (Code not editable)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><strong>Progressive Relationship</strong>:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">No Spec → Spec-First → Spec-Anchored → Spec-as-Source</span><br><span class="line">  │           │              │               │</span><br><span class="line">  │           │              │               └── Specs replace code</span><br><span class="line">  │           │              └── Specs and code coexist, long-term maintenance</span><br><span class="line">  │           └── Specs guide tasks, discarded after completion</span><br><span class="line">  └── Pure context, no spec flow</span><br></pre></td></tr></table></figure>
+<h2 id="how-to-choose"><a class="markdownIt-Anchor" href="#how-to-choose"></a> How to Choose</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">SDD Level</th>
+<th style="text-align:left">Context Loaded Per Task</th>
+<th style="text-align:left">Token Consumption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Spec-First</td>
+<td style="text-align:left">Current task’s spec + project rules</td>
+<td style="text-align:left">Lower</td>
+</tr>
+<tr>
+<td style="text-align:left">Spec-Anchored</td>
+<td style="text-align:left">Current task’s spec + all related existing specs / specs index + project rules</td>
+<td style="text-align:left">Higher</td>
+</tr>
+<tr>
+<td style="text-align:left">Spec-as-Source</td>
+<td style="text-align:left">Complete specs (code derived from spec, requires full understanding)</td>
+<td style="text-align:left">Highest</td>
+</tr>
+</tbody>
+</table>
+<p>The larger the system, the more extensive the specs/ directory becomes, and the higher the context cost per change—even hierarchical loading cannot fully address this. This is a trade-off.</p>
+<p>Therefore, Spec-First is currently the most cost-effective level. Spec-Anchored is suitable for scenarios that require extremely high consistency and are willing to bear the token cost. The specific additional cost needs to be evaluated through actual testing.</p>
 <h2 id="how-to-use-conductor"><a class="markdownIt-Anchor" href="#how-to-use-conductor"></a> How to Use Conductor</h2>
 <h3 id="gemini-cli"><a class="markdownIt-Anchor" href="#gemini-cli"></a> Gemini CLI</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gemini extensions install https://github.com/gemini-cli-extensions/conductor --auto-update</span><br></pre></td></tr></table></figure>
@@ -568,7 +628,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#background-from-vibe-coding-to-structured-ai-programming"><span class="nav-number">1.</span> <span class="nav-text"> Background: From Vibe Coding to Structured AI Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sdd-spec-driven-development"><span class="nav-number">1.1.</span> <span class="nav-text"> SDD (Spec Driven Development)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cdd-context-driven-development"><span class="nav-number">1.2.</span> <span class="nav-text"> CDD (Context Driven Development)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-analogy"><span class="nav-number">1.3.</span> <span class="nav-text"> Simple Analogy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-dimensions"><span class="nav-number">1.4.</span> <span class="nav-text"> Two Dimensions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#combined-usage"><span class="nav-number">1.5.</span> <span class="nav-text"> Combined Usage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#three-levels-of-sdd-bockelerfowler-framework"><span class="nav-number">2.</span> <span class="nav-text"> Three Levels of SDD (Bockeler&#x2F;Fowler Framework)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#level-one-spec-first"><span class="nav-number">2.1.</span> <span class="nav-text"> Level One: Spec-First</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level-two-spec-anchored"><span class="nav-number">2.2.</span> <span class="nav-text"> Level Two: Spec-Anchored</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level-three-spec-as-source"><span class="nav-number">2.3.</span> <span class="nav-text"> Level Three: Spec-as-Source</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sdd-tool-comparison"><span class="nav-number">3.</span> <span class="nav-text"> SDD Tool Comparison</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tool-positioning-map"><span class="nav-number">3.1.</span> <span class="nav-text"> Tool Positioning Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how-to-use-conductor"><span class="nav-number">4.</span> <span class="nav-text"> How to Use Conductor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gemini-cli"><span class="nav-number">4.1.</span> <span class="nav-text"> Gemini CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#other-coding-agents"><span class="nav-number">4.2.</span> <span class="nav-text"> Other Coding Agents</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">5.</span> <span class="nav-text"> References</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#background-from-vibe-coding-to-structured-ai-programming"><span class="nav-number">1.</span> <span class="nav-text"> Background: From Vibe Coding to Structured AI Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sdd-spec-driven-development"><span class="nav-number">1.1.</span> <span class="nav-text"> SDD (Spec Driven Development)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cdd-context-driven-development"><span class="nav-number">1.2.</span> <span class="nav-text"> CDD (Context Driven Development)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-analogy"><span class="nav-number">1.3.</span> <span class="nav-text"> Simple Analogy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-dimensions"><span class="nav-number">1.4.</span> <span class="nav-text"> Two Dimensions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#combined-usage"><span class="nav-number">1.5.</span> <span class="nav-text"> Combined Usage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#three-levels-of-sdd-bockelerfowler-framework"><span class="nav-number">2.</span> <span class="nav-text"> Three Levels of SDD (Bockeler&#x2F;Fowler Framework)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#level-one-spec-first"><span class="nav-number">2.1.</span> <span class="nav-text"> Level One: Spec-First</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level-two-spec-anchored"><span class="nav-number">2.2.</span> <span class="nav-text"> Level Two: Spec-Anchored</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#level-three-spec-as-source"><span class="nav-number">2.3.</span> <span class="nav-text"> Level Three: Spec-as-Source</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sdd-tool-comparison"><span class="nav-number">3.</span> <span class="nav-text"> SDD Tool Comparison</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tool-positioning-map"><span class="nav-number">3.1.</span> <span class="nav-text"> Tool Positioning Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how-to-choose"><span class="nav-number">4.</span> <span class="nav-text"> How to Choose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how-to-use-conductor"><span class="nav-number">5.</span> <span class="nav-text"> How to Use Conductor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gemini-cli"><span class="nav-number">5.1.</span> <span class="nav-text"> Gemini CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#other-coding-agents"><span class="nav-number">5.2.</span> <span class="nav-text"> Other Coding Agents</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">6.</span> <span class="nav-text"> References</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

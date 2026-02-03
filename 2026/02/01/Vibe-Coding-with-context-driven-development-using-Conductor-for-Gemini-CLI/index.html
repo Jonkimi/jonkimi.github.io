@@ -54,7 +54,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://blog.jonkimi.com/2026/02/01/Vibe-Coding-with-context-driven-development-using-Conductor-for-Gemini-CLI/423621769737783_.pic_hd.jpg">
 <meta property="article:published_time" content="2026-02-01T13:13:00.000Z">
-<meta property="article:modified_time" content="2026-02-02T23:06:02.417Z">
+<meta property="article:modified_time" content="2026-02-03T00:30:07.249Z">
 <meta property="article:author" content="Jonkimi">
 <meta property="article:tag" content="Conductor">
 <meta property="article:tag" content="Context Driven Development">
@@ -224,7 +224,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-02-03 07:06:02" itemprop="dateModified" datetime="2026-02-03T07:06:02+08:00">2026-02-03</time>
+                <time title="修改时间：2026-02-03 08:30:07" itemprop="dateModified" datetime="2026-02-03T08:30:07+08:00">2026-02-03</time>
               </span>
 
           
@@ -455,13 +455,13 @@
 <td><strong>Conductor</strong></td>
 <td>Google</td>
 <td>Spec-First</td>
-<td>项目级上下文增强</td>
+<td>项目级上下文增强，TDD 内建</td>
 </tr>
 <tr>
 <td>Spec Kit</td>
 <td>GitHub</td>
 <td>Spec-First</td>
-<td>Constitution 驱动的严格规范</td>
+<td>Constitution 驱动的严格规范，TDD 内建</td>
 </tr>
 <tr>
 <td>OpenSpec</td>
@@ -473,13 +473,73 @@
 </table>
 <p>完整信息参考 [SDD 工具对比]</p>
 <h3 id="工具定位图谱"><a class="markdownIt-Anchor" href="#工具定位图谱"></a> 工具定位图谱</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">工具</th>
+<th style="text-align:left">项目级规则</th>
+<th style="text-align:left">Feature Spec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Spec Kit</td>
+<td style="text-align:left">Anchored (Constitution)</td>
+<td style="text-align:left">First (branch 生命周期)</td>
+</tr>
+<tr>
+<td style="text-align:left">Kiro</td>
+<td style="text-align:left">Anchored (Steering)</td>
+<td style="text-align:left">First (task 生命周期)</td>
+</tr>
+<tr>
+<td style="text-align:left">Conductor</td>
+<td style="text-align:left">Anchored (<a target="_blank" rel="noopener" href="http://product.md">product.md</a>，<a target="_blank" rel="noopener" href="http://tech-stack.md">tech-stack.md</a>)</td>
+<td style="text-align:left">First (track 生命周期)</td>
+</tr>
+<tr>
+<td style="text-align:left">OpenSpec</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">Anchored (系统真相源)</td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  纯 CDD                                                     纯 SDD</span><br><span class="line">    │                                                          │</span><br><span class="line">    ▼                                                          ▼</span><br><span class="line">┌─────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────┐</span><br><span class="line">│ Cursor  │  │Antigravity│  │Conductor  │  │ OpenSpec  │  │ ?     │</span><br><span class="line">│         │  │ Kiro      │  │Spec-Kit   │  │           │  │       │</span><br><span class="line">└─────────┘  └───────────┘  └───────────┘  └───────────┘  └───────┘</span><br><span class="line">     │            │               │              │            │</span><br><span class="line">─────┴────────────┴───────────────┴──────────────┴────────────┴─────</span><br><span class="line">上下文引擎     Spec-First       Spec-Archived   Spec-Anchored   Spec-as-Source</span><br><span class="line">(无 spec 流程) (用完即弃)         (可归档部分复用)       (归档保留复用)      (代码不可编辑)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><strong>递进关系</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">无 Spec → Spec-First → Spec-Anchored → Spec-as-Source</span><br><span class="line">  │           │              │               │</span><br><span class="line">  │           │              │               └── 规格取代代码</span><br><span class="line">  │           │              └── 规格与代码并存，长期维护</span><br><span class="line">  │           └── 规格指导任务，完成后可丢弃</span><br><span class="line">  └── 纯上下文，无规格流程</span><br></pre></td></tr></table></figure>
+<h2 id="如何选择"><a class="markdownIt-Anchor" href="#如何选择"></a> 如何选择</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">SDD 层级</th>
+<th style="text-align:left">每次任务需要加载的上下文</th>
+<th style="text-align:left">Token 消耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Spec-First</td>
+<td style="text-align:left">当前任务的 spec + 项目规则</td>
+<td style="text-align:left">较低</td>
+</tr>
+<tr>
+<td style="text-align:left">Spec-Anchored</td>
+<td style="text-align:left">当前任务的 spec + 所有相关的现有 specs / specs 索引 + 项目规则</td>
+<td style="text-align:left">较高</td>
+</tr>
+<tr>
+<td style="text-align:left">Spec-as-Source</td>
+<td style="text-align:left">完整 specs（代码从 spec 派生，需要全量理解）</td>
+<td style="text-align:left">最高</td>
+</tr>
+</tbody>
+</table>
+<p>系统越大，specs/ 目录越庞大，每次变更的 context 成本越高，即使存在分层加载也不能解决，这是一个 trade-off。</p>
+<p>所以 Spec-First 是当前性价比最高的层级，Spec-Anchored 适合对一致性要求极高且愿意承担 token 成本的场景，具体额外成本需要实测评估。</p>
 <h2 id="如何使用-conductor"><a class="markdownIt-Anchor" href="#如何使用-conductor"></a> 如何使用 Conductor</h2>
 <h3 id="gemini-cli"><a class="markdownIt-Anchor" href="#gemini-cli"></a> Gemini CLI</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gemini extensions install https://github.com/gemini-cli-extensions/conductor --auto-update</span><br></pre></td></tr></table></figure>
-<h3 id="其他-coding-agent"><a class="markdownIt-Anchor" href="#其他-coding-agent"></a> 其他 Coding Agent</h3>
+<h3 id="coding-agent"><a class="markdownIt-Anchor" href="#coding-agent"></a> Coding Agent</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx conductor-install</span><br></pre></td></tr></table></figure>
 <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
 <ul>
@@ -564,7 +624,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8E-vibe-coding-%E5%88%B0%E7%BB%93%E6%9E%84%E5%8C%96-ai-%E7%BC%96%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text"> 背景：从 Vibe Coding 到结构化 AI 编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sddspec-driven-development"><span class="nav-number">1.1.</span> <span class="nav-text"> SDD（Spec Driven Development）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cddcontext-driven-development"><span class="nav-number">1.2.</span> <span class="nav-text"> CDD（Context Driven Development）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%B1%BB%E6%AF%94"><span class="nav-number">1.3.</span> <span class="nav-text"> 简单类比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.4.</span> <span class="nav-text"> 两个维度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text"> 组合使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sdd-%E7%9A%84%E4%B8%89%E4%B8%AA%E5%B1%82%E6%AC%A1bockelerfowler-%E6%A1%86%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text"> SDD 的三个层次（Bockeler&#x2F;Fowler 框架）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%B8%80spec-first%E8%A7%84%E6%A0%BC%E4%BC%98%E5%85%88"><span class="nav-number">2.1.</span> <span class="nav-text"> 层次一：Spec-First（规格优先）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%BA%8Cspec-anchored%E8%A7%84%E6%A0%BC%E9%94%9A%E5%AE%9A"><span class="nav-number">2.2.</span> <span class="nav-text"> 层次二：Spec-Anchored（规格锚定）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%B8%89spec-as-source%E8%A7%84%E6%A0%BC%E5%8D%B3%E6%BA%90%E7%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text"> 层次三：Spec-as-Source（规格即源码）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sdd-%E5%B7%A5%E5%85%B7%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text"> SDD 工具对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%9A%E4%BD%8D%E5%9B%BE%E8%B0%B1"><span class="nav-number">3.1.</span> <span class="nav-text"> 工具定位图谱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-conductor"><span class="nav-number">4.</span> <span class="nav-text"> 如何使用 Conductor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gemini-cli"><span class="nav-number">4.1.</span> <span class="nav-text"> Gemini CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96-coding-agent"><span class="nav-number">4.2.</span> <span class="nav-text"> 其他 Coding Agent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8E-vibe-coding-%E5%88%B0%E7%BB%93%E6%9E%84%E5%8C%96-ai-%E7%BC%96%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text"> 背景：从 Vibe Coding 到结构化 AI 编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sddspec-driven-development"><span class="nav-number">1.1.</span> <span class="nav-text"> SDD（Spec Driven Development）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cddcontext-driven-development"><span class="nav-number">1.2.</span> <span class="nav-text"> CDD（Context Driven Development）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%B1%BB%E6%AF%94"><span class="nav-number">1.3.</span> <span class="nav-text"> 简单类比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.4.</span> <span class="nav-text"> 两个维度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text"> 组合使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sdd-%E7%9A%84%E4%B8%89%E4%B8%AA%E5%B1%82%E6%AC%A1bockelerfowler-%E6%A1%86%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text"> SDD 的三个层次（Bockeler&#x2F;Fowler 框架）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%B8%80spec-first%E8%A7%84%E6%A0%BC%E4%BC%98%E5%85%88"><span class="nav-number">2.1.</span> <span class="nav-text"> 层次一：Spec-First（规格优先）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%BA%8Cspec-anchored%E8%A7%84%E6%A0%BC%E9%94%9A%E5%AE%9A"><span class="nav-number">2.2.</span> <span class="nav-text"> 层次二：Spec-Anchored（规格锚定）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E4%B8%89spec-as-source%E8%A7%84%E6%A0%BC%E5%8D%B3%E6%BA%90%E7%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text"> 层次三：Spec-as-Source（规格即源码）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sdd-%E5%B7%A5%E5%85%B7%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text"> SDD 工具对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%9A%E4%BD%8D%E5%9B%BE%E8%B0%B1"><span class="nav-number">3.1.</span> <span class="nav-text"> 工具定位图谱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9"><span class="nav-number">4.</span> <span class="nav-text"> 如何选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-conductor"><span class="nav-number">5.</span> <span class="nav-text"> 如何使用 Conductor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gemini-cli"><span class="nav-number">5.1.</span> <span class="nav-text"> Gemini CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#coding-agent"><span class="nav-number">5.2.</span> <span class="nav-text"> Coding Agent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
