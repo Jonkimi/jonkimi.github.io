@@ -246,7 +246,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="mvc"><a class="markdownIt-Anchor" href="#mvc"></a> MVC</h2>
+        <h2 id="MVC">MVC</h2>
 <p><code>Model-View-Controller</code> (<code>MVC</code>) 定义了三种组件：</p>
 <ul>
 <li><strong>Model</strong> 模型层，包含了数据对象，数据库实体类和数据操作相关的业务逻辑；</li>
@@ -258,7 +258,7 @@
 <p>Android 理论上的 <code>MVC</code></p>
 <p><code>View</code>显示是由<code>Controller</code>更新的，而由于<code>Android</code>里的<code>View</code>仅仅是静态<code>XML</code>布局，Android 的<code>View</code>不能实现更新逻辑，因此导致部分<strong>视图逻辑</strong>（比如视图的显示与隐藏）由<code>Activity</code>承担，因此实际上 Android 下的 MVC 如下：</p>
 <p>Activity 同时承担视图层和控制层的工作，不仅使 Activity 类变得庞大，还使组件耦合后的 Activity 单元测试困难。</p>
-<h2 id="mvp"><a class="markdownIt-Anchor" href="#mvp"></a> MVP</h2>
+<h2 id="MVP">MVP</h2>
 <p><code>Model View Presenter</code>（<code>MVP</code>）定义三种组件：</p>
 <ul>
 <li><strong>Model</strong> 模型层，包含了数据对象，数据库实体类和数据操作相关的业务逻辑；</li>
@@ -266,7 +266,7 @@
 <li><strong>Presenter</strong> 展示层，与模型层和视图层通信并处理展示逻辑</li>
 </ul>
 <p>由于 MVC 模式下 Activity 包含了视图层和控制层，并非正确的 MVC 实现，因此应用 MVP 模式，将 Activity 内控制层的代码迁移出来，</p>
-<h2 id="mvvm"><a class="markdownIt-Anchor" href="#mvvm"></a> MVVM</h2>
+<h2 id="MVVM">MVVM</h2>
 <p><code>Model-View-ViewModel</code>(<code>MVVM</code>) 定义三种组件：</p>
 <ul>
 <li><strong>View</strong> 显示 UI，通知其他层用户的操作</li>
@@ -344,7 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mvc"><span class="nav-number">1.</span> <span class="nav-text"> MVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mvp"><span class="nav-number">2.</span> <span class="nav-text"> MVP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mvvm"><span class="nav-number">3.</span> <span class="nav-text"> MVVM</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC"><span class="nav-number">1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVP"><span class="nav-number">2.</span> <span class="nav-text">MVP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVVM"><span class="nav-number">3.</span> <span class="nav-text">MVVM</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

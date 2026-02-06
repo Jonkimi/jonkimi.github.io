@@ -246,8 +246,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="basic-asm"><a class="markdownIt-Anchor" href="#basic-asm"></a> Basic Asm</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span> <span class="keyword">asm</span>-qualifiers ( AssemblerInstructions )</span></pre></td></tr></table></figure>
+        <h2 id="Basic-Asm">Basic Asm</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span> <span class="keyword">asm</span>-qualifiers ( AssemblerInstructions )</span><br></pre></td></tr></table></figure>
 <p>The asm keyword is a GNU extension. When writing code that can be compiled with -ansi and the various -std options, use <strong>asm</strong> instead of asm</p>
 <p><strong>Qualifiers</strong></p>
 <p><code>volatile</code></p>
@@ -264,9 +264,9 @@
 <li>Extended asm statements have to be inside a C function, so to write inline assembly language at file scope (“top-level”), outside of C functions, you must use basic asm. You can use this technique to emit assembler directives, define assembly language macros that can be invoked elsewhere in the file, or write entire functions in assembly language. Basic asm statements outside of functions may not use any qualifiers.</li>
 <li>Functions declared with the naked attribute also require basic asm (see Function Attributes).</li>
 </ul>
-<p><a href="https://gcc.gnu.org/onlinedocs/gcc-9.2.0/gcc/Basic-Asm.html#Basic-Asm" target="_blank" rel="noopener">https://gcc.gnu.org/onlinedocs/gcc-9.2.0/gcc/Basic-Asm.html#Basic-Asm</a></p>
-<h2 id="extended-asm"><a class="markdownIt-Anchor" href="#extended-asm"></a> Extended Asm</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span> <span class="keyword">asm</span>-qualifiers ( AssemblerTemplate </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">                 : OutputOperands </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">                 [ : InputOperands</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                 [ : Clobbers ] ])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span> <span class="keyword">asm</span>-qualifiers ( AssemblerTemplate </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                      : </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                      : InputOperands</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">                      : Clobbers</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">                      : GotoLabels)</span></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/gcc-9.2.0/gcc/Basic-Asm.html#Basic-Asm">https://gcc.gnu.org/onlinedocs/gcc-9.2.0/gcc/Basic-Asm.html#Basic-Asm</a></p>
+<h2 id="Extended-Asm">Extended Asm</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span> <span class="keyword">asm</span>-qualifiers ( AssemblerTemplate </span><br><span class="line">                 : OutputOperands </span><br><span class="line">                 [ : InputOperands</span><br><span class="line">                 [ : Clobbers ] ])</span><br><span class="line"></span><br><span class="line"><span class="keyword">asm</span> <span class="keyword">asm</span>-qualifiers ( AssemblerTemplate </span><br><span class="line">                      : </span><br><span class="line">                      : InputOperands</span><br><span class="line">                      : Clobbers</span><br><span class="line">                      : GotoLabels)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>asm statements that have no output operands, including asm goto statements, are implicitly volatile.</p>
 </blockquote>
@@ -340,7 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-asm"><span class="nav-number">1.</span> <span class="nav-text"> Basic Asm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extended-asm"><span class="nav-number">2.</span> <span class="nav-text"> Extended Asm</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Asm"><span class="nav-number">1.</span> <span class="nav-text">Basic Asm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extended-Asm"><span class="nav-number">2.</span> <span class="nav-text">Extended Asm</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

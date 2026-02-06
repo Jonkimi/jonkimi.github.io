@@ -247,35 +247,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="ssh-安全"><a class="markdownIt-Anchor" href="#ssh-安全"></a> SSH 安全</h2>
-<p>修改 SSH 服务配置文件<code>/etc/ssh/sshd_config</code>提高SSH安全性<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
-<h2 id="关闭密码登录"><a class="markdownIt-Anchor" href="#关闭密码登录"></a> 关闭密码登录</h2>
+        <h2 id="SSH-安全">SSH 安全</h2>
+<p>修改 SSH 服务配置文件<code>/etc/ssh/sshd_config</code>提高SSH安全性<a target="_blank" rel="noopener" href="https://www.ssh.com/ssh/sshd_config/">^1</a></p>
+<h2 id="关闭密码登录">关闭密码登录</h2>
 <p>修改<code>PasswordAuthentication</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># To disable tunneled clear text passwords, change to no here!</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#PasswordAuthentication yes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">#PermitEmptyPasswords no</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">PasswordAuthentication no</span></pre></td></tr></table></figure>
-<p>复制公开密钥到远程服务器<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i /path/to/public-key-file user@host</span></pre></td></tr></table></figure>
-<h2 id="使用安全算法"><a class="markdownIt-Anchor" href="#使用安全算法"></a> 使用安全算法</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># To disable tunneled clear text passwords, change to no here!</span><br><span class="line">#PasswordAuthentication yes</span><br><span class="line">#PermitEmptyPasswords no</span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure>
+<p>复制公开密钥到远程服务器<a target="_blank" rel="noopener" href="https://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html">^2</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i /path/to/public-key-file user@host</span><br></pre></td></tr></table></figure>
+<h2 id="使用安全算法">使用安全算法</h2>
 <p>添加算法指定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Ciphers aes128-ctr,aes192-ctr,aes256-ctr</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">HostKeyAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-rsa,ssh-dss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">MACs hmac-sha2-256,hmac-sha2-512</span></pre></td></tr></table></figure>
-<h2 id="使用安全性更好的密钥生成算法"><a class="markdownIt-Anchor" href="#使用安全性更好的密钥生成算法"></a> 使用安全性更好的密钥生成算法</h2>
-<p>使用<code>ed25519</code>或者<code>RSA 4096</code><sup class="footnote-ref"><a href="#fn2" id="fnref2:1">[2:1]</a></sup></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh-keygen -t key_type -b bits -C "comment"</span></pre></td></tr></table></figure>
-<h2 id="禁止-root-远程登录"><a class="markdownIt-Anchor" href="#禁止-root-远程登录"></a> 禁止 Root 远程登录</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Ciphers aes128-ctr,aes192-ctr,aes256-ctr</span><br><span class="line"></span><br><span class="line">HostKeyAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-rsa,ssh-dss</span><br><span class="line"></span><br><span class="line">KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256</span><br><span class="line"></span><br><span class="line">MACs hmac-sha2-256,hmac-sha2-512</span><br></pre></td></tr></table></figure>
+<h2 id="使用安全性更好的密钥生成算法">使用安全性更好的密钥生成算法</h2>
+<p>使用<code>ed25519</code>或者<code>RSA 4096</code><a target="_blank" rel="noopener" href="https://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html">^2</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t key_type -b bits -C &quot;comment&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="禁止-Root-远程登录">禁止 Root 远程登录</h2>
 <p>修改<code>PermitRootLogin</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">PermitRootLogin No</span></pre></td></tr></table></figure>
-<h2 id="更换端口"><a class="markdownIt-Anchor" href="#更换端口"></a> 更换端口</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PermitRootLogin No</span><br></pre></td></tr></table></figure>
+<h2 id="更换端口">更换端口</h2>
 <p>修改<code>Port</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Port 1122</span></pre></td></tr></table></figure>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p><a href="https://www.ssh.com/ssh/sshd_config/" target="_blank" rel="noopener">https://www.ssh.com/ssh/sshd_config/</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p><a href="https://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html" target="_blank" rel="noopener">https://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html</a> <a href="#fnref2" class="footnote-backref">↩︎</a> <a href="#fnref2:1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Port 1122</span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
 
     </div>
 
@@ -347,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh-%E5%AE%89%E5%85%A8"><span class="nav-number">1.</span> <span class="nav-text"> SSH 安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text"> 关闭密码登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%89%E5%85%A8%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text"> 使用安全算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%89%E5%85%A8%E6%80%A7%E6%9B%B4%E5%A5%BD%E7%9A%84%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text"> 使用安全性更好的密钥生成算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%81%E6%AD%A2-root-%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="nav-number">5.</span> <span class="nav-text"> 禁止 Root 远程登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E7%AB%AF%E5%8F%A3"><span class="nav-number">6.</span> <span class="nav-text"> 更换端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-%E5%AE%89%E5%85%A8"><span class="nav-number">1.</span> <span class="nav-text">SSH 安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">关闭密码登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%89%E5%85%A8%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">使用安全算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%89%E5%85%A8%E6%80%A7%E6%9B%B4%E5%A5%BD%E7%9A%84%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">使用安全性更好的密钥生成算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%81%E6%AD%A2-Root-%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="nav-number">5.</span> <span class="nav-text">禁止 Root 远程登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E7%AB%AF%E5%8F%A3"><span class="nav-number">6.</span> <span class="nav-text">更换端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

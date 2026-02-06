@@ -240,13 +240,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="disable-ipv6-in-apt"><a class="markdownIt-Anchor" href="#disable-ipv6-in-apt"></a> Disable IPv6 in APT</h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4</span><br></pre></td></tr></table></figure>
-<h2 id="disable-ipv6-on-all"><a class="markdownIt-Anchor" href="#disable-ipv6-on-all"></a> Disable IPv6 on all</h2>
+        <h2 id="Disable-IPv6-in-APT">Disable IPv6 in APT</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;Acquire::ForceIPv4 &quot;true&quot;;&#x27; | sudo tee /etc/apt/apt.conf.d/99force-ipv4</span><br></pre></td></tr></table></figure>
+<h2 id="Disable-IPv6-on-all">Disable IPv6 on all</h2>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo tee -a /etc/sysctl.d/99-sysctl.conf &gt; /dev/null &lt;&lt; EOL</span><br><span class="line">net.ipv6.conf.all.disable_ipv6 = 1</span><br><span class="line">net.ipv6.conf.default.disable_ipv6 = 1</span><br><span class="line">net.ipv6.conf.lo.disable_ipv6 = 1</span><br><span class="line">EOL</span><br><span class="line">sudo sysctl -p</span><br></pre></td></tr></table></figure>
-<h2 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h2>
+<h2 id="Reference">Reference</h2>
 <ul>
-<li><a href="https://www.linuxbabe.com/ubuntu/disable-ipv6-on-ubuntu" target="_blank" rel="noopener">https://www.linuxbabe.com/ubuntu/disable-ipv6-on-ubuntu</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.linuxbabe.com/ubuntu/disable-ipv6-on-ubuntu">https://www.linuxbabe.com/ubuntu/disable-ipv6-on-ubuntu</a></li>
 </ul>
 
     </div>
@@ -318,7 +318,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#disable-ipv6-in-apt"><span class="nav-number">1.</span> <span class="nav-text"> Disable IPv6 in APT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#disable-ipv6-on-all"><span class="nav-number">2.</span> <span class="nav-text"> Disable IPv6 on all</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text"> Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Disable-IPv6-in-APT"><span class="nav-number">1.</span> <span class="nav-text">Disable IPv6 in APT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disable-IPv6-on-all"><span class="nav-number">2.</span> <span class="nav-text">Disable IPv6 on all</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -247,23 +247,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="install-sourcetrail"><a class="markdownIt-Anchor" href="#install-sourcetrail"></a> Install Sourcetrail</h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew update &amp;&amp; brew cask install sourcetrail</span></pre></td></tr></table></figure>
-<h2 id="project-setup"><a class="markdownIt-Anchor" href="#project-setup"></a> Project setup</h2>
+        <h2 id="Install-Sourcetrail">Install Sourcetrail</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew update &amp;&amp; brew cask install sourcetrail</span><br></pre></td></tr></table></figure>
+<h2 id="Project-setup">Project setup</h2>
 <ol>
 <li>Create a new project;</li>
 <li>Add source group and choose source group type <code>C/C++ from Compilation Database*</code>;</li>
 <li>Choose source files and include path.</li>
 </ol>
-<p>more details can be found here: <a href="https://www.sourcetrail.com/documentation/#CreateaC/C++SourceGroupfromCompilationDatabase" target="_blank" rel="noopener">https://www.sourcetrail.com/documentation/#CreateaC/C++SourceGroupfromCompilationDatabase</a></p>
-<h2 id="compilation-database"><a class="markdownIt-Anchor" href="#compilation-database"></a> Compilation Database</h2>
+<p>more details can be found here: <a target="_blank" rel="noopener" href="https://www.sourcetrail.com/documentation/#CreateaC/C++SourceGroupfromCompilationDatabase">https://www.sourcetrail.com/documentation/#CreateaC/C++SourceGroupfromCompilationDatabase</a></p>
+<h2 id="Compilation-Database">Compilation Database</h2>
 <ol>
 <li>
 <p>CMake</p>
 <p>Use the CMAKE_EXPORT_COMPILE_COMMANDS flag. You can run</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</span></pre></td></tr></table></figure>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</span><br></pre></td></tr></table></figure>
 <p>or add the following line to your CMakeLists.txt script:</p>
- <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span>(CMAKE_EXPORT_COMPILE_COMMANDS <span class="keyword">ON</span>)</span></pre></td></tr></table></figure>
+ <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span>(CMAKE_EXPORT_COMPILE_COMMANDS <span class="keyword">ON</span>)</span><br></pre></td></tr></table></figure>
 <p>The compile_commands.json file will be put into the build directory.</p>
 </li>
 <li>
@@ -271,11 +271,11 @@
 <p>Use <code>Bear</code>, see <a href="/2019/12/11/Language-Server-Protocol/" title="Language Server Protocol">Language Server Protocol</a></p>
 </li>
 </ol>
-<h2 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h2>
+<h2 id="Reference">Reference</h2>
 <ul>
-<li><a href="https://www.sourcetrail.com" target="_blank" rel="noopener">https://www.sourcetrail.com</a></li>
-<li><a href="https://www.jetbrains.com/help/clion/compilation-database.html#compdb_generate" target="_blank" rel="noopener">https://www.jetbrains.com/help/clion/compilation-database.html#compdb_generate</a></li>
-<li><a href="https://www.sourcetrail.com/documentation/#CreateaC/C++SourceGroupfromCompilationDatabase" target="_blank" rel="noopener">https://www.sourcetrail.com/documentation/#CreateaC/C++SourceGroupfromCompilationDatabase</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sourcetrail.com">https://www.sourcetrail.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/help/clion/compilation-database.html#compdb_generate">https://www.jetbrains.com/help/clion/compilation-database.html#compdb_generate</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sourcetrail.com/documentation/#CreateaC/C++SourceGroupfromCompilationDatabase">https://www.sourcetrail.com/documentation/#CreateaC/C++SourceGroupfromCompilationDatabase</a></li>
 </ul>
 
     </div>
@@ -286,9 +286,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Bear/" rel="tag"># Bear</a>
               <a href="/tags/Sourcetrail/" rel="tag"># Sourcetrail</a>
               <a href="/tags/Compilation-Database/" rel="tag"># Compilation Database</a>
+              <a href="/tags/Bear/" rel="tag"># Bear</a>
           </div>
 
         
@@ -348,7 +348,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install-sourcetrail"><span class="nav-number">1.</span> <span class="nav-text"> Install Sourcetrail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#project-setup"><span class="nav-number">2.</span> <span class="nav-text"> Project setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compilation-database"><span class="nav-number">3.</span> <span class="nav-text"> Compilation Database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text"> Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Sourcetrail"><span class="nav-number">1.</span> <span class="nav-text">Install Sourcetrail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Project-setup"><span class="nav-number">2.</span> <span class="nav-text">Project setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compilation-Database"><span class="nav-number">3.</span> <span class="nav-text">Compilation Database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

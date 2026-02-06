@@ -246,46 +246,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="依赖工具"><a class="markdownIt-Anchor" href="#依赖工具"></a> 依赖工具</h2>
+        <h2 id="依赖工具">依赖工具</h2>
 <ul>
-<li><a href="https://github.com/micropython/micropython.git" target="_blank" rel="noopener">micropython</a></li>
-<li><a href="https://github.com/ThunderEX/py-kms.git" target="_blank" rel="noopener">py-kms</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/micropython/micropython.git">micropython</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ThunderEX/py-kms.git">py-kms</a></li>
 </ul>
-<h2 id="mircropython安装"><a class="markdownIt-Anchor" href="#mircropython安装"></a> mircropython安装</h2>
+<h2 id="mircropython安装">mircropython安装</h2>
 <p>参考<code>README.md</code>里关于<code>The Unix version</code>的内容</p>
 <ol>
 <li>下载最新<code>tag</code>代码</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git clone https://github.com/micropython/micropython.git</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cd micropython</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">git tag</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">git checkout -b tag-1.9.3 v1.9.3</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/micropython/micropython.git</span><br><span class="line">cd micropython</span><br><span class="line">git tag</span><br><span class="line">git checkout -b tag-1.9.3 v1.9.3</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>安装额外依赖</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yum groupinstall "Development tools"</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">yum install libffi-devel</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall &quot;Development tools&quot;</span><br><span class="line">yum install libffi-devel</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>编译</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git submodule update --init</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cd ports/unix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">make deplibs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">make axtls</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">make</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init</span><br><span class="line">cd ports/unix</span><br><span class="line">make deplibs</span><br><span class="line">make axtls</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>安装</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">./micropython</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ls /usr/sbin/mkfs -l</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./micropython</span><br><span class="line">ls /usr/sbin/mkfs -l</span><br></pre></td></tr></table></figure>
 <p>在<code>~/.bash_profile</code>中添加环境变量</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">MICROPYTHON_HOME</span>=/root/kms/micropython/ports/unix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="attr">PATH</span>=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$MICROPYTHON_HOME</span></span></pre></td></tr></table></figure>
-<h2 id="py-kms-安装"><a class="markdownIt-Anchor" href="#py-kms-安装"></a> py-kms 安装</h2>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">MICROPYTHON_HOME</span>=/root/kms/micropython/ports/unix</span><br><span class="line"><span class="attr">PATH</span>=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$MICROPYTHON_HOME</span></span><br></pre></td></tr></table></figure>
+<h2 id="py-kms-安装">py-kms 安装</h2>
 <ol>
 <li>安装</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd py-kms/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">micropython -m upip install -r requirements-micropython.txt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">chomod +x *.sh</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd py-kms/</span><br><span class="line">micropython -m upip install -r requirements-micropython.txt</span><br><span class="line">chomod +x *.sh</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>启动</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">python server.py</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python server.py</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>测试</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">python client.py 0.0.0.0 1688</span></pre></td></tr></table></figure>
-<h2 id="问题定位"><a class="markdownIt-Anchor" href="#问题定位"></a> 问题定位</h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> micropython -m upip install -r requirements-micropython.txt</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Installing to: /root/.micropython/lib/</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Warning: pypi.python.org SSL certificate is not validated</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Error installing 'micropython-argparse': Package not found, packages may be partially installed</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python client.py 0.0.0.0 1688</span><br></pre></td></tr></table></figure>
+<h2 id="问题定位">问题定位</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">micropython -m upip install -r requirements-micropython.txt</span></span><br><span class="line">Installing to: /root/.micropython/lib/</span><br><span class="line">Warning: pypi.python.org SSL certificate is not validated</span><br><span class="line">Error installing &#x27;micropython-argparse&#x27;: Package not found, packages may be partially installed</span><br></pre></td></tr></table></figure>
 <p>解决：更新到v1.9.4</p>
 
     </div>
@@ -357,7 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%B7%A5%E5%85%B7"><span class="nav-number">1.</span> <span class="nav-text"> 依赖工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mircropython%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text"> mircropython安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#py-kms-%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text"> py-kms 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D"><span class="nav-number">4.</span> <span class="nav-text"> 问题定位</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%B7%A5%E5%85%B7"><span class="nav-number">1.</span> <span class="nav-text">依赖工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mircropython%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">mircropython安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#py-kms-%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">py-kms 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D"><span class="nav-number">4.</span> <span class="nav-text">问题定位</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

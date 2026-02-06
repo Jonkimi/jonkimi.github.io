@@ -246,9 +246,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="chevereto-简介"><a class="markdownIt-Anchor" href="#chevereto-简介"></a> Chevereto 简介</h2>
+        <h2 id="Chevereto-简介">Chevereto 简介</h2>
 <p><a target="_blank" rel="noopener" href="https://chevereto.com">Chevereto</a> 是一款图床服务器软件，其<a target="_blank" rel="noopener" href="https://chevereto.com/free">社区版本</a>可以让我们免费搭建自己的图床服务器。</p>
-<h2 id="chevereto-安装"><a class="markdownIt-Anchor" href="#chevereto-安装"></a> Chevereto 安装</h2>
+<h2 id="Chevereto-安装">Chevereto 安装</h2>
 <ol>
 <li>
 <p>依赖</p>
@@ -286,10 +286,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">diff route.api-jonkimi.php ../route.api.php</span></span><br><span class="line">37,39c37,38</span><br><span class="line">&lt;               if(!G\timing_safe_compare(&#x27;your-api-key&#x27;, $_REQUEST[&#x27;key&#x27;])) &#123;</span><br><span class="line">&lt;                       throw new Exception(&quot; Invalid API-J v1 key.&quot;, 100);</span><br><span class="line">&lt;                       //throw new Exception($_REQUEST[&#x27;key&#x27;], 100);</span><br><span class="line">---</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">              <span class="keyword">if</span>(!G\timing_safe_compare(CHV\getSetting(<span class="string">&#x27;api_v1_key&#x27;</span>), <span class="variable">$_REQUEST</span>[<span class="string">&#x27;key&#x27;</span>])) &#123;</span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">                      throw new Exception(<span class="string">&quot;Invalid API v1 key.&quot;</span>, 100);</span></span><br><span class="line">106,107c105</span><br><span class="line">&lt;               $uploaded_id = CHV\Image::uploadToWebsite($source, &#x27;jonkimi&#x27;);</span><br><span class="line">&lt;               //$uploaded_id = CHV\Image::uploadToWebsite($source);</span><br><span class="line">---</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">              <span class="variable">$uploaded_id</span> = CHV\Image::uploadToWebsite(<span class="variable">$source</span>);</span></span><br><span class="line">153c151</span><br><span class="line">&lt; &#125;;</span><br><span class="line">---</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">&#125;;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="安装问题"><a class="markdownIt-Anchor" href="#安装问题"></a> 安装问题</h2>
+<h2 id="安装问题">安装问题</h2>
 <ol>
 <li>
-<p>cURL isn’t installed and allow_url_fopen is disabled. Chevereto needs one of these to perform HTTP requests to remote servers.</p>
+<p>cURL isn't installed and allow_url_fopen is disabled. Chevereto needs one of these to perform HTTP requests to remote servers.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install php5-curl</span><br><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
 </li>
 <li>
@@ -314,7 +314,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> nginx:nginx /var/lib/php/session</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<h2 id="参考">参考</h2>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite-for-apache-on-ubuntu-14-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite-for-apache-on-ubuntu-14-04</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/questions/installing-the-gd-image-library">https://www.digitalocean.com/community/questions/installing-the-gd-image-library</a></li>
@@ -392,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chevereto-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text"> Chevereto 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chevereto-%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text"> Chevereto 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text"> 安装问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chevereto-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">Chevereto 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chevereto-%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">Chevereto 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">安装问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

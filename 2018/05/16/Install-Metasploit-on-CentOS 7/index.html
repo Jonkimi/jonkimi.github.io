@@ -246,60 +246,60 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="steps"><a class="markdownIt-Anchor" href="#steps"></a> Steps</h2>
+        <h2 id="Steps">Steps</h2>
 <ol>
 <li>Get source code, Enter into code directory</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git clone git://github.com/rapid7/metasploit-framework.git</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cd metasploit-framework</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/rapid7/metasploit-framework.git</span><br><span class="line">cd metasploit-framework</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>Install preparation, install Ruby and set it default</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yum install yum-utils -y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">yum-builddep -y ruby</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">rvm install ruby-2.5.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">rvm use 2.5.1 --default</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install yum-utils -y</span><br><span class="line">yum-builddep -y ruby</span><br><span class="line">rvm install ruby-2.5.1</span><br><span class="line">rvm use 2.5.1 --default</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>Install rvm</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">curl -L get.rvm.io | bash -s stable</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">source /etc/profile.d/rvm.sh</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L get.rvm.io | bash -s stable</span><br><span class="line">source /etc/profile.d/rvm.sh</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>Check output if you have gpg key check error, execute this command</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3</span><br></pre></td></tr></table></figure>
 <ol start="5">
 <li>Bundler install</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">gem install rails</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">bundle install</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem install rails</span><br><span class="line">bundle install</span><br></pre></td></tr></table></figure>
 <ol start="6">
 <li>Init and start postgresql</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">postgresql-setup initdb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">systemctl start postgresql</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">postgresql-setup initdb</span><br><span class="line">systemctl start postgresql</span><br></pre></td></tr></table></figure>
 <ol start="7">
 <li>Create postgresql user and database for metasploit</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo -u postgres -i createuser msfuser -P</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo -u postgres -i createdb -O msfuser msfdb</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo -u postgres -i createuser msfuser -P</span><br><span class="line">sudo -u postgres -i createdb -O msfuser msfdb</span><br></pre></td></tr></table></figure>
 <ol start="8">
 <li>Config metasploit db</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cp config/database.yml.example config/database.yml</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp config/database.yml.example config/database.yml</span><br></pre></td></tr></table></figure>
 <ol start="9">
 <li>Edit <code>database.yml</code></li>
 </ol>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">production:</span> <span class="meta">&amp;pgsql</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">adapter:</span> <span class="string">postgresql</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">database:</span> <span class="string">msfdb</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">username:</span> <span class="string">msfuser</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">password:</span> <span class="string">msfpass</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">host:</span> <span class="string">localhost</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">port:</span> <span class="number">5432</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">pool:</span> <span class="number">5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">timeout:</span> <span class="number">5</span></span></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">production:</span> <span class="meta">&amp;pgsql</span></span><br><span class="line">  <span class="attr">adapter:</span> <span class="string">postgresql</span></span><br><span class="line">  <span class="attr">database:</span> <span class="string">msfdb</span></span><br><span class="line">  <span class="attr">username:</span> <span class="string">msfuser</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">msfpass</span></span><br><span class="line">  <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">5432</span></span><br><span class="line">  <span class="attr">pool:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
 <ol start="10">
 <li>Add  config to <code>/var/lib/pgsql/data/pg_hba.conf</code></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">host   msfdb            msfuser      127.0.0.1&#x2F;32          md5</span></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host   msfdb            msfuser      127.0.0.1/32          md5</span><br></pre></td></tr></table></figure>
 <ol start="11">
 <li>Restart postgresql</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl restart postgresql.service</span></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart postgresql.service</span><br></pre></td></tr></table></figure>
 <ol start="12">
 <li>Start</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">./msfconsole</span></pre></td></tr></table></figure>
-<h2 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./msfconsole</span><br></pre></td></tr></table></figure>
+<h2 id="Reference">Reference</h2>
 <ul>
-<li><a href="https://gist.github.com/oogali/bc8ff245894c696c4dfa" target="_blank" rel="noopener">https://gist.github.com/oogali/bc8ff245894c696c4dfa</a></li>
-<li><a href="http://www.hi-roy.com/2015/12/28/centos7%E5%AE%89%E8%A3%85Metasploit%E6%A1%86%E6%9E%B6" target="_blank" rel="noopener">http://www.hi-roy.com/2015/12/28/centos7安装Metasploit框架</a></li>
-<li><a href="https://blog.csdn.net/nixawk/article/details/44724755" target="_blank" rel="noopener">https://blog.csdn.net/nixawk/article/details/44724755</a></li>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/oogali/bc8ff245894c696c4dfa">https://gist.github.com/oogali/bc8ff245894c696c4dfa</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.hi-roy.com/2015/12/28/centos7%E5%AE%89%E8%A3%85Metasploit%E6%A1%86%E6%9E%B6">http://www.hi-roy.com/2015/12/28/centos7安装Metasploit框架</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/nixawk/article/details/44724755">https://blog.csdn.net/nixawk/article/details/44724755</a></li>
 </ul>
 
     </div>
@@ -368,7 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#steps"><span class="nav-number">1.</span> <span class="nav-text"> Steps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">2.</span> <span class="nav-text"> Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Steps"><span class="nav-number">1.</span> <span class="nav-text">Steps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

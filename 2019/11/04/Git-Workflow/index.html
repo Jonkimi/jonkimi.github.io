@@ -245,20 +245,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="git-workflow"><a class="markdownIt-Anchor" href="#git-workflow"></a> Git Workflow</h1>
+        <h1>Git Workflow</h1>
 <ol>
 <li>仓库基于<code>develop</code>分支进行功能开发，<code>master</code>分支用于发布版本</li>
 <li>本地基于特性分支开发</li>
 </ol>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git checkout -b feature/&lt;feature-name&gt;</span></pre></td></tr></table></figure>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature/&lt;feature-name&gt;</span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>每个特性开发完后合入<code>develop</code>分支并删除特性分支</li>
 </ol>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git checkout develop</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">git merge feature/&lt;feature-name&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">git branch -d feature/&lt;feature-name&gt;</span></pre></td></tr></table></figure>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge feature/&lt;feature-name&gt;</span><br><span class="line">git branch -d feature/&lt;feature-name&gt;</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>同步到<code>develop</code>仓库</li>
 </ol>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git push origin develop</span></pre></td></tr></table></figure>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin develop</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -328,7 +328,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git-workflow"><span class="nav-number">1.</span> <span class="nav-text"> Git Workflow</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Git Workflow</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

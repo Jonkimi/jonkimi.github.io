@@ -248,35 +248,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="install-zsh"><a class="markdownIt-Anchor" href="#install-zsh"></a> Install zsh</h2>
+        <h2 id="Install-zsh">Install zsh</h2>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
 <p>CentOS</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update &amp;&amp; sudo yum -y install zsh</span><br></pre></td></tr></table></figure>
-<h2 id="install-ohmyzsh"><a class="markdownIt-Anchor" href="#install-ohmyzsh"></a> Install ohmyzsh</h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<h2 id="Install-ohmyzsh">Install ohmyzsh</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
 <p>zsh-autosuggestions</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zsh-users/zsh-autosuggestions $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
 <p>zsh-syntax-highlighting</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugins&#x3D;(</span><br><span class="line">  git</span><br><span class="line">  z</span><br><span class="line">  zsh-autosuggestions</span><br><span class="line">  zsh-syntax-highlighting</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h2 id="install-fzf"><a class="markdownIt-Anchor" href="#install-fzf"></a> Install fzf</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">  git</span><br><span class="line">  z</span><br><span class="line">  zsh-autosuggestions</span><br><span class="line">  zsh-syntax-highlighting</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="Install-fzf">Install fzf</h2>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</span><br><span class="line">~/.fzf/install</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export FZF_BASE&#x3D;~&#x2F;.fzf</span><br><span class="line">plugins&#x3D;(</span><br><span class="line">  git</span><br><span class="line">  fzf</span><br><span class="line">  z</span><br><span class="line">  zsh-autosuggestions</span><br><span class="line">  zsh-syntax-highlighting</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h2 id="install-zplug"><a class="markdownIt-Anchor" href="#install-zplug"></a> Install zplug</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export FZF_BASE=~/.fzf</span><br><span class="line">plugins=(</span><br><span class="line">  git</span><br><span class="line">  fzf</span><br><span class="line">  z</span><br><span class="line">  zsh-autosuggestions</span><br><span class="line">  zsh-syntax-highlighting</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="Install-zplug">Install zplug</h2>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh</span><br></pre></td></tr></table></figure>
 <p>MacOS</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zplug</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export ZPLUG_HOME&#x3D;&#x2F;path&#x2F;to&#x2F;.zplug</span><br><span class="line">source $ZPLUG_HOME&#x2F;init.zsh</span><br><span class="line">zplug &quot;changyuheng&#x2F;fz&quot;, defer:1</span><br><span class="line">zplug load</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export ZPLUG_HOME=/path/to/.zplug</span><br><span class="line">source $ZPLUG_HOME/init.zsh</span><br><span class="line">zplug &quot;changyuheng/fz&quot;, defer:1</span><br><span class="line">zplug load</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source ~/.zshrc</span><br><span class="line">zplug install</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
-<h2 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h2>
+<h2 id="Reference">Reference</h2>
 <ul>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh" target="_blank" rel="noopener">https://github.com/ohmyzsh/ohmyzsh</a></li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH" target="_blank" rel="noopener">https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH</a></li>
-<li><a href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh" target="_blank" rel="noopener">https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh</a></li>
-<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting" target="_blank" rel="noopener">https://github.com/zsh-users/zsh-syntax-highlighting</a></li>
-<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md" target="_blank" rel="noopener">https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md</a></li>
-<li><a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">https://github.com/junegunn/fzf</a></li>
-<li><a href="https://github.com/zplug/zplug" target="_blank" rel="noopener">https://github.com/zplug/zplug</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh">https://github.com/ohmyzsh/ohmyzsh</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH">https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh">https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting">https://github.com/zsh-users/zsh-syntax-highlighting</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md">https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf">https://github.com/junegunn/fzf</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zplug/zplug">https://github.com/zplug/zplug</a></li>
 </ul>
 
     </div>
@@ -350,7 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install-zsh"><span class="nav-number">1.</span> <span class="nav-text"> Install zsh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-ohmyzsh"><span class="nav-number">2.</span> <span class="nav-text"> Install ohmyzsh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-fzf"><span class="nav-number">3.</span> <span class="nav-text"> Install fzf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-zplug"><span class="nav-number">4.</span> <span class="nav-text"> Install zplug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text"> Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-zsh"><span class="nav-number">1.</span> <span class="nav-text">Install zsh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-ohmyzsh"><span class="nav-number">2.</span> <span class="nav-text">Install ohmyzsh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-fzf"><span class="nav-number">3.</span> <span class="nav-text">Install fzf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-zplug"><span class="nav-number">4.</span> <span class="nav-text">Install zplug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

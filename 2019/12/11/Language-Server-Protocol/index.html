@@ -247,41 +247,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="what"><a class="markdownIt-Anchor" href="#what"></a> What</h1>
+        <h1>What</h1>
 <p>The Language Server Protocol (LSP) defines the protocol used between an editor or IDE and a language server that provides language features like auto complete, go to definition, find all references etc.</p>
 <p>The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how such servers and development tools communicate. This way, a single Language Server can be re-used in multiple development tools, which in turn can support multiple languages with minimal effort.</p>
-<h1 id="how"><a class="markdownIt-Anchor" href="#how"></a> How</h1>
+<h1>How</h1>
 <p>Microsoft currently maintains a parallel list of language server implementations in the core LSP repository.</p>
-<h1 id="application"><a class="markdownIt-Anchor" href="#application"></a> Application</h1>
+<h1>Application</h1>
 <p>use ccls</p>
-<h2 id="installation"><a class="markdownIt-Anchor" href="#installation"></a> Installation</h2>
+<h2 id="Installation">Installation</h2>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install ccls rapidjson</span><br><span class="line">brew info ccls</span><br></pre></td></tr></table></figure>
-<h2 id="confiuguration"><a class="markdownIt-Anchor" href="#confiuguration"></a> Confiuguration</h2>
+<h2 id="Confiuguration">Confiuguration</h2>
 <p><code>ccls</code> for vim, use <code>vim-plug</code> vim plugin manager.</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">BuildTABNine</span><span class="params">(info)</span></span></span><br><span class="line">  <span class="comment">" info is a dictionary with 3 fields</span></span><br><span class="line">  <span class="comment">" - name:   name of the plugin</span></span><br><span class="line">  <span class="comment">" - status: 'installed', 'updated', or 'unchanged'</span></span><br><span class="line">  <span class="comment">" - force:  set on PlugInstall! or PlugUpdate!</span></span><br><span class="line">  <span class="keyword">if</span> <span class="variable">a:info</span>.status == <span class="string">'installed'</span> || <span class="variable">a:info</span>.force</span><br><span class="line">    !./install.<span class="keyword">py</span></span><br><span class="line">  <span class="keyword">endif</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line">Plug <span class="string">'zxqfl/tabnine-vim'</span>, &#123; <span class="string">'do'</span>: <span class="function"><span class="keyword">function</span><span class="params">('BuildTABNine')</span> &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function!</span> <span class="title">BuildTABNine</span><span class="params">(info)</span></span><br><span class="line">  <span class="comment">&quot; info is a dictionary with 3 fields</span></span><br><span class="line">  <span class="comment">&quot; - name:   name of the plugin</span></span><br><span class="line">  <span class="comment">&quot; - status: &#x27;installed&#x27;, &#x27;updated&#x27;, or &#x27;unchanged&#x27;</span></span><br><span class="line">  <span class="comment">&quot; - force:  set on PlugInstall! or PlugUpdate!</span></span><br><span class="line">  <span class="keyword">if</span> <span class="variable">a:info</span>.status == <span class="string">&#x27;installed&#x27;</span> || <span class="variable">a:info</span>.force</span><br><span class="line">    !./install.<span class="keyword">py</span></span><br><span class="line">  <span class="keyword">endif</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line">Plug <span class="string">&#x27;zxqfl/tabnine-vim&#x27;</span>, &#123; <span class="string">&#x27;do&#x27;</span>: <span class="keyword">function</span>(<span class="string">&#x27;BuildTABNine&#x27;</span>) &#125;</span><br></pre></td></tr></table></figure>
 <p>use command <code>:PlugInstall</code> Install tabnine-vim</p>
 <p>modify <code>TabNine.toml</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">command &#x3D; &quot;ccls&quot;</span><br><span class="line">args &#x3D; [&quot;--init&#x3D;&#123;\&quot;cacheDirectory\&quot;:\&quot;$&#123;project_root&#125;&#x2F;.ccls\&quot;&#125;&quot;]</span><br><span class="line">synchronous_triggers &#x3D; [&quot;.&quot;]</span><br><span class="line">synchronous_timeout_ms &#x3D; 200</span><br><span class="line">num_server_instances &#x3D; 2</span><br><span class="line">always_prefer &#x3D; false</span><br></pre></td></tr></table></figure>
-<h3 id="bear"><a class="markdownIt-Anchor" href="#bear"></a> Bear</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">command = &quot;ccls&quot;</span><br><span class="line">args = [&quot;--init=&#123;\&quot;cacheDirectory\&quot;:\&quot;$&#123;project_root&#125;/.ccls\&quot;&#125;&quot;]</span><br><span class="line">synchronous_triggers = [&quot;.&quot;]</span><br><span class="line">synchronous_timeout_ms = 200</span><br><span class="line">num_server_instances = 2</span><br><span class="line">always_prefer = false</span><br></pre></td></tr></table></figure>
+<h3 id="Bear">Bear</h3>
 <p>Install Bear</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/rizsotto/Bear.git</span><br><span class="line">mkdir build32 build64</span><br><span class="line"><span class="meta">#</span><span class="bash"> 32</span></span><br><span class="line">cd build32</span><br><span class="line">cmake -DCMAKE_C_COMPILER_ARG1="-m32" ../Bear</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 64</span></span><br><span class="line">cd build64</span><br><span class="line">cmake -DCMAKE_C_COMPILER_ARG1="-m64" ../Bear</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/rizsotto/Bear.git</span><br><span class="line">mkdir build32 build64</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">32</span></span><br><span class="line">cd build32</span><br><span class="line">cmake -DCMAKE_C_COMPILER_ARG1=&quot;-m32&quot; ../Bear</span><br><span class="line">make install</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">64</span></span><br><span class="line">cd build64</span><br><span class="line">cmake -DCMAKE_C_COMPILER_ARG1=&quot;-m64&quot; ../Bear</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 <p>make sure <code>libear.so</code> in <code>LD_LIBRARY_PATH</code></p>
 <blockquote>
-<p>ERROR: <a href="http://ld.so" target="_blank" rel="noopener">ld.so</a>: object ‘/lib/x86_64-linux-gnu/libear.so’ from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS64): ignored.</p>
+<p>ERROR: <a target="_blank" rel="noopener" href="http://ld.so">ld.so</a>: object '/lib/x86_64-linux-gnu/libear.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS64): ignored.</p>
 </blockquote>
 <p><code>libear.so</code> copy 32-bit library to <code>/usr/lib/i386-linux-gnu/</code> or <code>/usr/lib32</code> then copy 64-bit library to <code>/usr/lib/x86_64-linux-gnu/</code>.[^6]<br>
 Execute bear this way and get Compilation Database json:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bear -l libear.so make_cmd</span><br></pre></td></tr></table></figure>
-<h1 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h1>
+<h1>Reference</h1>
 <ul>
-<li><a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener">https://microsoft.github.io/language-server-protocol/</a></li>
-<li><a href="https://microsoft.github.io/language-server-protocol/implementors/servers/" target="_blank" rel="noopener">https://microsoft.github.io/language-server-protocol/implementors/servers/</a></li>
-<li><a href="https://langserver.org/" target="_blank" rel="noopener">https://langserver.org/</a></li>
-<li><a href="https://github.com/MaskRay/ccls" target="_blank" rel="noopener">https://github.com/MaskRay/ccls</a></li>
-<li><a href="https://github.com/rizsotto/Bear" target="_blank" rel="noopener">https://github.com/rizsotto/Bear</a></li>
-<li><a href="https://github.com/rizsotto/Bear/issues/134#issuecomment-246750848" target="_blank" rel="noopener">https://github.com/rizsotto/Bear/issues/134#issuecomment-246750848</a></li>
-<li><a href="https://tabnine.com/" target="_blank" rel="noopener">https://tabnine.com/</a></li>
-<li><a href="https://tabnine.com/semantic" target="_blank" rel="noopener">https://tabnine.com/semantic</a></li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/language-server-protocol/">https://microsoft.github.io/language-server-protocol/</a></li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/language-server-protocol/implementors/servers/">https://microsoft.github.io/language-server-protocol/implementors/servers/</a></li>
+<li><a target="_blank" rel="noopener" href="https://langserver.org/">https://langserver.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MaskRay/ccls">https://github.com/MaskRay/ccls</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rizsotto/Bear">https://github.com/rizsotto/Bear</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/rizsotto/Bear/issues/134#issuecomment-246750848">https://github.com/rizsotto/Bear/issues/134#issuecomment-246750848</a></li>
+<li><a target="_blank" rel="noopener" href="https://tabnine.com/">https://tabnine.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://tabnine.com/semantic">https://tabnine.com/semantic</a></li>
 </ul>
 
     </div>
@@ -292,9 +292,9 @@ Execute bear this way and get Compilation Database json:</p>
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Bear/" rel="tag"># Bear</a>
               <a href="/tags/LSP/" rel="tag"># LSP</a>
               <a href="/tags/ccls/" rel="tag"># ccls</a>
-              <a href="/tags/Bear/" rel="tag"># Bear</a>
           </div>
 
         
@@ -354,7 +354,7 @@ Execute bear this way and get Compilation Database json:</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#what"><span class="nav-number">1.</span> <span class="nav-text"> What</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how"><span class="nav-number">2.</span> <span class="nav-text"> How</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#application"><span class="nav-number">3.</span> <span class="nav-text"> Application</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#installation"><span class="nav-number">3.1.</span> <span class="nav-text"> Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#confiuguration"><span class="nav-number">3.2.</span> <span class="nav-text"> Confiuguration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bear"><span class="nav-number">3.2.1.</span> <span class="nav-text"> Bear</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text"> Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">What</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">How</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation"><span class="nav-number">3.1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confiuguration"><span class="nav-number">3.2.</span> <span class="nav-text">Confiuguration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bear"><span class="nav-number">3.2.1.</span> <span class="nav-text">Bear</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
